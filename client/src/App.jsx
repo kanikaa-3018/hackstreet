@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom' 
 import Footer from './components/Footer'
+import Profile from './pages/Profile'
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>
