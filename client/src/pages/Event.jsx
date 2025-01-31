@@ -34,21 +34,24 @@ export default function EventPage() {
     {
       title: "Leadership Summit",
       date: "April 10, 2025",
-      description: "A one-day summit with inspiring leaders from various industries.",
+      description:
+        "A one-day summit with inspiring leaders from various industries.",
       location: "Convention Center, City Hall",
       image: convo10, // Add image for this event
     },
     {
       title: "Career Fair 2025",
       date: "May 5, 2025",
-      description: "Connect with top employers and explore career opportunities.",
+      description:
+        "Connect with top employers and explore career opportunities.",
       location: "University Career Center",
       image: convo11, // Add image for this event
     },
     {
       title: "Entrepreneur Workshop",
       date: "June 15, 2025",
-      description: "Learn from successful entrepreneurs and start your journey.",
+      description:
+        "Learn from successful entrepreneurs and start your journey.",
       location: "Business School Auditorium",
       image: convo12, // Add image for this event
     },
@@ -93,13 +96,22 @@ export default function EventPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
-      {/* Header Section */}
-      <section className="text-center py-16 bg-blue-600 text-white">
-        <h1 className="text-4xl font-bold">Upcoming Events</h1>
-        <p className="mt-2 text-lg">
-          Don't miss out on exciting opportunities to connect and grow.
-        </p>
-      </section>
+      
+      <div className="relative">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-80"
+          style={{ backgroundImage: `url(${convo7})` }}
+        ></div>
+
+        {/* Overlay Section */}
+        <section className="relative text-center py-20 bg-blue-600 bg-opacity-70 text-white">
+          <h1 className="text-4xl font-bold">Upcoming Events</h1>
+          <p className="mt-2 text-lg">
+            Don't miss out on exciting opportunities to connect and grow.
+          </p>
+        </section>
+      </div>
 
       {/* Events List Section */}
       <section className="p-10 flex justify-center">
@@ -130,14 +142,14 @@ export default function EventPage() {
                 key={index}
                 className="min-w-[20px] max-w-[350px] h-auto bg-white shadow-lg rounded-lg"
               >
-                <CardContent >
+                <CardContent>
                   <div className="flex justify-center mb-4 flex-col -mx-6">
                     <div className="w-full flex">
-                    <img
-                      src={event.image}
-                      alt=""
-                      className="w-full h-[200px] object-cover rounded-tr-lg rounded-tl-lg mb-2"
-                    />
+                      <img
+                        src={event.image}
+                        alt=""
+                        className="w-full h-[200px] object-cover rounded-tr-lg rounded-tl-lg mb-2"
+                      />
                     </div>
                     <div className="flex flex-col gap-2 items-center">
                       <h2 className="font-bold text-lg">{event.title}</h2>
