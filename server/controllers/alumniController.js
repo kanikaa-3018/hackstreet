@@ -17,10 +17,25 @@ export const signupController = async (req, res) => {
       currentLocation,
       company,
       bio,
-      linkedin,
       instagram,
-      profileImage,
+      linkedin,
+      profileImage
     } = req.body;
+
+    if (!name || !email || !password || !year || !batch || !phone || !position || !currentLocation || !company) {
+      return res.status(400).json({
+        message: "Missing required fields",
+        success: false,
+      });
+   }
+   
+
+
+    let profileImageUrl = '';
+    if (req.file) {
+      profileImageUrl = await uploadToCloudinary(req.file.path);
+      fs.unlinkSync(req.file.path); // Remove local file after upload
+    }
 
     const emailExists = await alumniModel.findOne({ email });
     if (emailExists) {

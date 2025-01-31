@@ -4,31 +4,37 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../../public/logo iiitm 1.png";
+import { useUser } from "../context/UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); 
-
+  const { setUser } = useUser();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/alumni/login", {
-        email,
-        password,
-      });
-
+      const response = await axios.post(
+        "/api/v1/alumni/login",
+        {
+          email,
+          password,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(response);
       toast.success("Login successful! 🎉", {
         position: "top-right",
         autoClose: 3000,
       });
 
-      
-      localStorage.setItem("token", response.data.token);
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        setUser(response.data.user); 
+      }
 
-      
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -97,7 +103,10 @@ const Login = () => {
           {/* Forgot Password & Sign Up Links */}
           <p className="text-sm text-gray-500 text-center mt-4">
             Forgot password?{" "}
-            <Link to="/forgot-password" className="text-blue-600 hover:underline">
+            <Link
+              to="/forgot-password"
+              className="text-blue-600 hover:underline"
+            >
               Reset here
             </Link>
           </p>

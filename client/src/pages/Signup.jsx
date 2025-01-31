@@ -8,21 +8,20 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    graduationYear: "",
+    year: "",
     batch: "",
     phone: "",
-    currentPosition: "",
+    position: "",
     currentLocation: "",
     company: "",
-    linkedin: "",
-    instagram: "",
-    shortBio: "",
     profileImage: null,
+    instagram: "",
+    linkedin: "",
+    bio: "",
   });
-  
+
   const navigate = useNavigate();
 
-  
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -38,18 +37,46 @@ const Signup = () => {
     }
   };
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Validate required fields before submission
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.year ||
+      !formData.batch ||
+      !formData.phone ||
+      !formData.position ||
+      !formData.currentLocation ||
+      !formData.company
+    ) {
+      alert("Please fill in all required fields");
+      return;
+    }
+    console.log(formData);
+
     const form = new FormData();
-    for (let key in formData) {
-      form.append(key, formData[key]);
+    if (formData.name) form.append("name", formData.name);
+    if (formData.email) form.append("email", formData.email);
+    if (formData.password) form.append("password", formData.password);
+    if (formData.year) form.append("year", formData.year);
+    if (formData.batch) form.append("batch", formData.batch);
+    if (formData.phone) form.append("phone", formData.phone);
+    if (formData.position) form.append("position", formData.position);
+    if (formData.currentLocation)
+      form.append("currentLocation", formData.currentLocation);
+    if (formData.company) form.append("company", formData.company);
+
+    // Optionally, you can append the profile image if it's available
+    if (formData.profileImage) {
+      form.append("profileImage", formData.profileImage);
     }
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/alumni/signup", 
+        "http://localhost:4000/api/v1/alumni/signup",
         form,
         {
           headers: {
@@ -57,11 +84,18 @@ const Signup = () => {
           },
         }
       );
+
       console.log(response.data);
-      navigate("/login"); 
+      navigate("/login");
     } catch (error) {
-      console.error("Error during signup:", error.response?.data?.message || error.message);
-      alert("Signup failed, please try again.");
+      console.log("Signup Error:", {
+        message: error.response?.data?.message || error.message,
+        status: error.response?.status,
+        data: error.response?.data,
+      });
+      alert(
+        error.response?.data?.message || "Signup failed, please try again."
+      );
     }
   };
 
@@ -139,8 +173,8 @@ const Signup = () => {
                 </label>
                 <input
                   type="number"
-                  name="graduationYear"
-                  value={formData.graduationYear}
+                  name="year"
+                  value={formData.year}
                   onChange={handleChange}
                   placeholder="Year"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
@@ -181,8 +215,8 @@ const Signup = () => {
               </label>
               <input
                 type="text"
-                name="currentPosition"
-                value={formData.currentPosition}
+                name="position"
+                value={formData.position}
                 onChange={handleChange}
                 placeholder="Your current role"
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
@@ -250,8 +284,8 @@ const Signup = () => {
                 Short Bio
               </label>
               <textarea
-                name="shortBio"
-                value={formData.shortBio}
+                name="bio"
+                value={formData.bio}
                 onChange={handleChange}
                 placeholder="Tell us about yourself"
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
