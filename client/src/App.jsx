@@ -6,6 +6,9 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom' 
 import Footer from './components/Footer'
+import Event from './pages/Event'
+import NewsletterPage from './pages/Newsletter'
+import UpdatesPage from './pages/Update'
 
 function App() {
   
@@ -16,6 +19,9 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/events' element={<Event/>}></Route>
+        <Route path='/newsletter' element={<NewsletterPage/>}></Route>
+        <Route path='/updates' element={<UpdatesPage/>}></Route>
       </Routes>
       <Footer/>
       </BrowserRouter>
