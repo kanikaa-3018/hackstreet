@@ -10,6 +10,9 @@ import Event from './pages/Event'
 import NewsletterPage from './pages/Newsletter'
 import UpdatesPage from './pages/Update'
 
+import Profile from './pages/Profile'
+
+
 function App() {
   
   return (
@@ -19,9 +22,13 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home/>}/>
+
         <Route path='/events' element={<Event/>}></Route>
         <Route path='/newsletter' element={<NewsletterPage/>}></Route>
         <Route path='/updates' element={<UpdatesPage/>}></Route>
+
+        <Route path='/profile' element={<Profile/>}/>
+
       </Routes>
       <Footer/>
       </BrowserRouter>
