@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FaCalendarAlt, FaArrowRight } from "react-icons/fa";
-import updateImage from "../../public/convo7.jpg";
 
 const updates = [
   { title: "Alumni Meet 2025 Announced!", date: "March 10, 2025", description: "Join us for a grand reunion with networking opportunities and guest speakers." },
