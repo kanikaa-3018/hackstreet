@@ -12,9 +12,14 @@ import convo12 from "../../public/convo12.jpg";
 import convo13 from "../../public/convo13.jpg";
 import convo14 from "../../public/convo14.jpg";
 import convo15 from "../../public/convo15.jpg";
+import { motion } from "framer-motion";
+
+import { FaMapMarkerAlt, FaClock, FaCalendarAlt } from "react-icons/fa"; // Add the icons
 
 export default function EventPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [eventDetails, setEventDetails] = useState(null); // To store the event details for modal
 
   const events = [
     {
@@ -22,6 +27,25 @@ export default function EventPage() {
       date: "March 20, 2025",
       description: "Join us for an in-person and virtual alumni gathering.",
       location: "University Campus & Online",
+      agenda:
+        "Keynote by notable alumni, Panel discussions, Networking sessions",
+      speakers: [
+        {
+          name: "John Doe",
+          imageUrl:
+            "https://i.pinimg.com/236x/07/27/49/0727496d3933ee05605d97adb157fa37.jpg",
+        },
+        {
+          name: "Jane Smith",
+          imageUrl:
+            "https://i.pinimg.com/236x/ad/6b/a8/ad6ba822be9fb5d4619051837dfda8e0.jpg",
+        },
+        {
+          name: "Alex Greenr",
+          imageUrl:
+            "https://i.pinimg.com/236x/72/3a/af/723aaf860c79a2599f8c171edde215ec.jpg",
+        },
+      ],
       image: convo8,
     },
     {
@@ -29,52 +53,193 @@ export default function EventPage() {
       date: "February 15, 2025",
       description: "A virtual networking event for alumni in tech fields.",
       location: "Online",
-      image: convo9, // Add image for this event
+      agenda: "Introduction, Networking, Tech presentations",
+      speakers: [
+        {
+          name: "David Lee",
+          imageUrl:
+            "https://i.pinimg.com/236x/ad/6b/a8/ad6ba822be9fb5d4619051837dfda8e0.jpg",
+        },
+        {
+          name: "Sarah Brown",
+          imageUrl:
+            "https://i.pinimg.com/236x/07/27/49/0727496d3933ee05605d97adb157fa37.jpg",
+        },
+      ],
+      image: convo9,
     },
     {
-      title: "Leadership Summit",
+      title: "Digital Marketing Workshop",
       date: "April 10, 2025",
       description:
-        "A one-day summit with inspiring leaders from various industries.",
-      location: "Convention Center, City Hall",
-      image: convo10, // Add image for this event
+        "Learn the latest strategies in digital marketing with industry experts.",
+      location: "University Campus & Virtual",
+      agenda:
+        "Introduction to Digital Marketing, Social Media Strategies, SEO Basics",
+      speakers: [
+        {
+          name: "Mike Johnson ",
+          imageUrl:
+            "https://i.pinimg.com/236x/9a/dd/c6/9addc6f22a21fc7ccdfc63d8f2e9a97a.jpg",
+        },
+        {
+          name: "Linda Clarke ",
+          imageUrl:
+            "https://i.pinimg.com/236x/ad/6b/a8/ad6ba822be9fb5d4619051837dfda8e0.jpg",
+        },
+      ],
+      image: convo10,
     },
     {
-      title: "Career Fair 2025",
-      date: "May 5, 2025",
+      title: "AI and Machine Learning Summit",
+      date: "May 25, 2025",
       description:
-        "Connect with top employers and explore career opportunities.",
-      location: "University Career Center",
-      image: convo11, // Add image for this event
+        "Explore the future of AI and ML with top professionals in the field.",
+      location: "Online",
+      agenda: "Keynote speech, Machine Learning Trends, AI for business",
+      speakers: [
+        {
+          name: "Dr. Emily Roberts",
+          imageUrl:
+            "https://i.pinimg.com/236x/07/27/49/0727496d3933ee05605d97adb157fa37.jpg",
+        },
+        {
+          name: "Dr. Mark Lee",
+          imageUrl:
+            "https://i.pinimg.com/236x/72/3a/af/723aaf860c79a2599f8c171edde215ec.jpg",
+        },
+      ],
+      image: convo11,
     },
     {
-      title: "Entrepreneur Workshop",
-      date: "June 15, 2025",
+      title: "Cybersecurity in 2025",
+      date: "June 5, 2025",
       description:
-        "Learn from successful entrepreneurs and start your journey.",
-      location: "Business School Auditorium",
-      image: convo12, // Add image for this event
+        "An interactive event discussing the future of cybersecurity and how to protect your digital assets.",
+      location: "University Campus",
+      agenda: "Cybersecurity Basics, Data Protection, Future of Cybersecurity",
+      speakers: [
+        {
+          name: "James Clark",
+          imageUrl:
+            "https://i.pinimg.com/236x/9a/dd/c6/9addc6f22a21fc7ccdfc63d8f2e9a97a.jpg",
+        },
+        {
+          name: "Olivia White ",
+          imageUrl:
+            "https://i.pinimg.com/236x/ad/6b/a8/ad6ba822be9fb5d4619051837dfda8e0.jpg",
+        },
+      ],
+      image: convo12,
     },
     {
-      title: "Research Symposium",
-      date: "July 8, 2025",
-      description: "Showcase of groundbreaking research by alumni and faculty.",
-      location: "Science Complex",
-      image: convo13, // Add image for this event
+      title: "Startup Pitch Event",
+      date: "July 15, 2025",
+      description:
+        "Pitch your startup to top investors and receive feedback from industry leaders.",
+      location: "University Campus & Online",
+      agenda: "Pitching Sessions, Networking with Investors, Closing Remarks",
+      speakers: [
+        {
+          name: "Rachel Green",
+          imageUrl:
+            "https://i.pinimg.com/236x/07/27/49/0727496d3933ee05605d97adb157fa37.jpg",
+        },
+        {
+          name: "Tom Black",
+          imageUrl:
+            "https://i.pinimg.com/236x/ad/6b/a8/ad6ba822be9fb5d4619051837dfda8e0.jpg",
+        },
+      ],
+      image: convo13,
     },
     {
-      title: "Global Alumni Day",
-      date: "August 20, 2025",
-      description: "Worldwide celebration connecting alumni across continents.",
-      location: "Multiple Locations & Online",
-      image: convo14, // Add image for this event
+      title: "Leadership in Tech Webinar",
+      date: "August 2, 2025",
+      description:
+        "Join us for an insightful webinar on leadership in the tech industry.",
+      location: "Online",
+      agenda:
+        "Leadership Styles, Challenges in Tech Leadership, Career Pathways",
+      speakers: [
+        {
+          name: "Alice Brown ",
+          imageUrl:
+            "https://i.pinimg.com/236x/72/3a/af/723aaf860c79a2599f8c171edde215ec.jpg",
+        },
+        {
+          name: "Chris White ",
+          imageUrl:
+            "https://i.pinimg.com/236x/9a/dd/c6/9addc6f22a21fc7ccdfc63d8f2e9a97a.jpg",
+        },
+      ],
+      image: convo14,
     },
     {
-      title: "Innovation Conference",
-      date: "September 12, 2025",
-      description: "Explore latest trends in technology and innovation.",
-      location: "Tech Hub Center",
-      image: convo15, // Add image for this event
+      title: "Blockchain and Cryptocurrencies",
+      date: "September 18, 2025",
+      description:
+        "An in-depth session on blockchain technology and cryptocurrency trends.",
+      location: "Online",
+      agenda:
+        "Introduction to Blockchain, Cryptocurrency Trends, Blockchain in Business",
+      speakers: [
+        {
+          name: "David Miller ",
+          imageUrl:
+            "https://i.pinimg.com/236x/9a/dd/c6/9addc6f22a21fc7ccdfc63d8f2e9a97a.jpg",
+        },
+        {
+          name: "Eve Johnson",
+          imageUrl:
+            "https://i.pinimg.com/236x/07/27/49/0727496d3933ee05605d97adb157fa37.jpg",
+        },
+      ],
+      image: convo15,
+    },
+    {
+      title: "Sustainable Business Practices",
+      date: "October 5, 2025",
+      description:
+        "Learn how to build a sustainable business that aligns with modern environmental practices.",
+      location: "University Campus & Virtual",
+      agenda:
+        "Sustainable Business Models, Green Technologies, Corporate Responsibility",
+      speakers: [
+        {
+          name: "Samantha Green",
+          imageUrl:
+            "https://i.pinimg.com/236x/ad/6b/a8/ad6ba822be9fb5d4619051837dfda8e0.jpg",
+        },
+        {
+          name: "Paul Black",
+          imageUrl:
+            "https://i.pinimg.com/236x/72/3a/af/723aaf860c79a2599f8c171edde215ec.jpg",
+        },
+      ],
+      image: convo13,
+    },
+    {
+      title: "Product Management Conference",
+      date: "November 10, 2025",
+      description:
+        "A conference focused on the evolving role of product management in the tech industry.",
+      location: "University Campus & Online",
+      agenda:
+        "Product Lifecycle, Product Strategy, Innovation in Product Management",
+      speakers: [
+        {
+          name: "Alice Clark ",
+          imageUrl:
+            "https://i.pinimg.com/236x/07/27/49/0727496d3933ee05605d97adb157fa37.jpg",
+        },
+        {
+          name: "Daniel Brown",
+          imageUrl:
+            "https://i.pinimg.com/236x/72/3a/af/723aaf860c79a2599f8c171edde215ec.jpg",
+        },
+      ],
+      image: convo14,
     },
   ];
 
@@ -89,6 +254,11 @@ export default function EventPage() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + totalPages) % totalPages);
   };
 
+  const handleEventClick = (event) => {
+    setEventDetails(event); // Set event details in state when Learn More is clicked
+    setIsModalOpen(true);
+  };
+
   const visibleEvents = events.slice(
     currentIndex * eventsPerPage,
     (currentIndex + 1) * eventsPerPage
@@ -96,7 +266,6 @@ export default function EventPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
-      
       <div className="relative">
         {/* Background Image */}
         <div
@@ -105,16 +274,26 @@ export default function EventPage() {
         ></div>
 
         {/* Overlay Section */}
-        <section className="relative text-center py-20 bg-blue-600 bg-opacity-70 text-white">
+        <motion.section
+          className="relative text-center py-20 bg-blue-600 bg-opacity-70 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h1 className="text-4xl font-bold">Upcoming Events</h1>
           <p className="mt-2 text-lg">
             Don't miss out on exciting opportunities to connect and grow.
           </p>
-        </section>
+        </motion.section>
       </div>
 
       {/* Events List Section */}
-      <section className="p-10 flex justify-center">
+      <motion.section
+        className="p-10 flex justify-center"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+      >
         <div className="relative w-full max-w-7xl">
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -left-8 transform -translate-y-1/2 z-10">
@@ -136,7 +315,12 @@ export default function EventPage() {
           </div>
 
           {/* Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             {visibleEvents.map((event, index) => (
               <Card
                 key={index}
@@ -161,13 +345,16 @@ export default function EventPage() {
                   <p className="mt-2 text-sm text-gray-500">
                     <strong>Location:</strong> {event.location}
                   </p>
-                  <Button className="mt-4 w-full bg-[#00016a] hover:bg-[#bbbbbb] text-white py-2 rounded-none">
+                  <Button
+                    className="mt-4 w-full bg-[#00016a] hover:bg-[#bbbbbb] text-white py-2 rounded-none"
+                    onClick={() => handleEventClick(event)} // Passing event details to modal
+                  >
                     Learn More
                   </Button>
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </motion.div>
 
           {/* Pagination Dots */}
           <div className="flex justify-center mt-6 space-x-2">
@@ -181,7 +368,104 @@ export default function EventPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* Modal for Event Details */}
+      {isModalOpen && eventDetails && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg w-[500px] shadow-2xl transform transition-all duration-300 max-w-[500px]">
+            {/* Image Section */}
+            <div className="mb-4 rounded-lg overflow-hidden">
+              <img
+                src={
+                  eventDetails.image || "https://via.placeholder.com/500x300"
+                } // Use actual image URL or placeholder
+                alt="Event"
+                className="w-full h-56 object-cover"
+              />
+            </div>
+
+            <div className="space-y-4">
+              {/* Title and Close Button */}
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {eventDetails.title}
+                </h2>
+                <span
+                  className="text-3xl text-gray-600 cursor-pointer"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  &times;
+                </span>
+              </div>
+
+              {/* Event Info Section */}
+              <div className="space-y-2 text-gray-800">
+                <div className="flex items-center">
+                  <FaCalendarAlt className="mr-2 text-gray-600" />
+                  <p>
+                    <strong className="font-semibold">Date:</strong>{" "}
+                    {eventDetails.date}
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <FaClock className="mr-2 text-gray-600" />
+                  <p>
+                    <strong className="font-semibold">Time:</strong>{" "}
+                    {eventDetails.time}
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <FaMapMarkerAlt className="mr-2 text-gray-600" />
+                  <p>
+                    <strong className="font-semibold">Location:</strong>{" "}
+                    {eventDetails.location}
+                  </p>
+                </div>
+              </div>
+
+              {/* Agenda Section */}
+              <div className="space-y-2 text-gray-800">
+                <h3 className="font-semibold">Agenda:</h3>
+                <p>{eventDetails.agenda}</p>
+              </div>
+
+              {/* Speakers Section */}
+              <div className="space-y-2 text-gray-800">
+                <h3 className="font-semibold">Speakers:</h3>
+                <div className="flex space-x-4">
+                  {eventDetails.speakers.map((speaker, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center flex-col gap-1"
+                    >
+                      <img
+                        src={
+                          speaker.imageUrl ||
+                          "https://i.pinimg.com/236x/5d/0c/50/5d0c50f79be27f5120c5e5f3158ce52f.jpg"
+                        } // Use speaker image URL or placeholder
+                        alt={speaker.name}
+                        className="w-20 h-20 rounded-full object-cover border-2 border-gray-300"
+                      />
+                      <span className="ml-2">{speaker.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Close Button */}
+            <div className="mt-6 flex justify-end">
+              <button
+                className="bg-gray-800 text-white px-6 py-2 rounded-full shadow-md hover:bg-gray-700 transition-colors"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <PastEvent />
     </div>

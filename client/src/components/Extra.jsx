@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 import { FaBookReader } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
@@ -30,8 +31,7 @@ const Extra = () => {
     },
     {
       title: "Scholarships",
-      description:
-        "Explore scholarships available through alumni connections.",
+      description: "Explore scholarships available through alumni connections.",
       buttonText: "Find Scholarships",
       icon: <FaBookReader />,
     },
@@ -45,14 +45,21 @@ const Extra = () => {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-6 mt-16 mb-20">
+    <motion.div
+      className="flex flex-wrap justify-center gap-6 mt-16 mb-20"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay:6 }}
+    >
       {cardData.map((card, index) => (
         <Card
           key={index}
           className="w-[300px] text-center border-gray-300 shadow-md p-4"
         >
           <CardHeader>
-            <CardTitle className="text-lg font-semibold">{card.title}</CardTitle>
+            <CardTitle className="text-lg font-semibold">
+              {card.title}
+            </CardTitle>
             <CardDescription className="text-gray-600">
               {card.description}
             </CardDescription>
@@ -67,7 +74,7 @@ const Extra = () => {
           </CardFooter>
         </Card>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

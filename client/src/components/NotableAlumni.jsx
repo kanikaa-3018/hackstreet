@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import al1 from "../../public/al1.jpeg";
 import al2 from "../../public/al2.jpeg";
@@ -9,6 +15,7 @@ import al5 from "../../public/al5.jpeg";
 import al6 from "../../public/al6.jpeg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const alumniData = [
   {
@@ -80,37 +87,70 @@ const NotableAlumni = () => {
 
   return (
     <>
-      <h1 className="font-bold text-2xl text-black mt-8 mb-2 px-28">Our Notable Alumnis</h1>
+      <motion.h1
+        className="font-bold text-2xl text-black mt-8 mb-2 px-28"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 1.5 }}
+      >
+        Our Notable Alumnis
+      </motion.h1>
       <div className="overflow-x-auto p-6">
         <div className="flex items-center gap-4">
-          <button onClick={goToPrevious} disabled={currentIndex === 0} className="text-xl p-2 bg-gray-200 rounded-md h-16 hover:bg-gray-300 disabled:opacity-50">
+          <button
+            onClick={goToPrevious}
+            disabled={currentIndex === 0}
+            className="text-xl p-2 bg-gray-200 rounded-md h-16 hover:bg-gray-300 disabled:opacity-50"
+          >
             <MdKeyboardArrowLeft />
           </button>
 
-          <div className="flex justify-center items-center overflow-auto gap-6 w-max px-6">
-            {alumniData.slice(currentIndex, currentIndex + cardsPerView).map((alumni, index) => (
-              <Card key={index} className="w-[300px] shadow-lg">
-                <CardHeader className="flex items-center flex-col">
-                  <img
-                    src={alumni.image}
-                    alt={alumni.name}
-                    className="w-32 h-32 object-cover rounded-full border-4 border-gray-300"
-                  />
-                  <CardTitle className="mt-4 text-xl font-semibold">{alumni.name}</CardTitle>
-                  <p className="text-gray-600 font-medium -mt-2">{alumni.job}</p>
-                  <p className="text-gray-500">{alumni.year}</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 text-sm text-center">{alumni.bio}</p>
-                </CardContent>
-                <CardFooter className="flex justify-center">
-                  <Button variant="outline" className="w-full bg-blue-900 text-white hover:bg-[#00016a] hover:text-white">Connect</Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+          <motion.div
+            className="flex justify-center items-center overflow-auto gap-6 w-max px-6"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 2, duration: 0.5 }}
+          >
+            {alumniData
+              .slice(currentIndex, currentIndex + cardsPerView)
+              .map((alumni, index) => (
+                <Card key={index} className="w-[300px] shadow-lg">
+                  <CardHeader className="flex items-center flex-col">
+                    <img
+                      src={alumni.image}
+                      alt={alumni.name}
+                      className="w-32 h-32 object-cover rounded-full border-4 border-gray-300"
+                    />
+                    <CardTitle className="mt-4 text-xl font-semibold">
+                      {alumni.name}
+                    </CardTitle>
+                    <p className="text-gray-600 font-medium -mt-2">
+                      {alumni.job}
+                    </p>
+                    <p className="text-gray-500">{alumni.year}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700 text-sm text-center">
+                      {alumni.bio}
+                    </p>
+                  </CardContent>
+                  <CardFooter className="flex justify-center">
+                    <Button
+                      variant="outline"
+                      className="w-full bg-blue-900 text-white hover:bg-[#00016a] hover:text-white"
+                    >
+                      Connect
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+          </motion.div>
 
-          <button onClick={goToNext} disabled={currentIndex + cardsPerView >= alumniData.length} className="text-xl p-2 bg-gray-200 rounded-md h-16 hover:bg-gray-300 disabled:opacity-50">
+          <button
+            onClick={goToNext}
+            disabled={currentIndex + cardsPerView >= alumniData.length}
+            className="text-xl p-2 bg-gray-200 rounded-md h-16 hover:bg-gray-300 disabled:opacity-50"
+          >
             <MdKeyboardArrowRight />
           </button>
         </div>
