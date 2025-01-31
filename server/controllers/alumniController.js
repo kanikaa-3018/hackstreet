@@ -1,6 +1,8 @@
 import alumniModel from "../models/alumniModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import fs from 'fs';
+import uploadToCloudinary from "../utils/cloudinary.js"
 
 export const signupController = async (req, res) => {
   try {
@@ -82,7 +84,7 @@ export const loginController = async (req, res) => {
       });
     }
 
-    // Generate JWT Token
+    
     const token = jwt.sign({ id: alumni._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
