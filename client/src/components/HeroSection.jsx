@@ -14,12 +14,33 @@ import convo5 from "../../public/convo5.jpg";
 import convo6 from "../../public/convo6.jpg";
 
 const images = [
-  { src: convo1, quote: "ABV-IIITM Gwalior is dedicated to nurturing future leaders through academic excellence, innovation, and a commitment to nation-building." },
-  { src: convo2, quote: "Fostering a legacy of learning, leadership, and innovation." },
-  { src: convo3, quote: "Every convocation is a testament to the hard work, dedication, and achievements of our students, fostering a legacy of success." },
-  { src: convo4, quote: "Transforming students into future leaders of tomorrow." },
-  { src: convo5, quote: "Celebrating excellence and innovation at ABV-IIITM Gwalior." },
-  { src: convo6, quote: "Graduates of ABV-IIITM Gwalior proudly pose with their certificates, commemorating a day of success and celebration during the convocation." },
+  {
+    src: convo1,
+    quote:
+      "ABV-IIITM Gwalior is dedicated to nurturing future leaders through academic excellence, innovation, and a commitment to nation-building.",
+  },
+  {
+    src: convo2,
+    quote: "Fostering a legacy of learning, leadership, and innovation.",
+  },
+  {
+    src: convo3,
+    quote:
+      "Every convocation is a testament to the hard work, dedication, and achievements of our students, fostering a legacy of success.",
+  },
+  {
+    src: convo4,
+    quote: "Transforming students into future leaders of tomorrow.",
+  },
+  {
+    src: convo5,
+    quote: "Celebrating excellence and innovation at ABV-IIITM Gwalior.",
+  },
+  {
+    src: convo6,
+    quote:
+      "Graduates of ABV-IIITM Gwalior proudly pose with their certificates, commemorating a day of success and celebration during the convocation.",
+  },
 ];
 
 const HeroSection = () => {
@@ -50,16 +71,23 @@ const HeroSection = () => {
                   alt={`Slide ${index + 1}`}
                   className="w-full h-[700px] object-cover"
                 />
-                <p className= "pt-2 text-xl font-semibold text-center text-white h-[50px] w-full bg-gradient-to-t from-black via-[#00016A] to-[#353556]">
-
+                <p className="pt-2 text-xl font-semibold text-center text-white h-[50px] w-full bg-gradient-to-t from-black via-[#00016A] to-[#353556] shadow-[0px_-10px_20px_rgba(0,0,0,0.5)]">
                   {img.quote}
                 </p>
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious onClick={() => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)} />
-        <CarouselNext onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)} />
+        <CarouselPrevious
+          onClick={() =>
+            setCurrentIndex(
+              (prev) => (prev - 1 + images.length) % images.length
+            )
+          }
+        />
+        <CarouselNext
+          onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
+        />
       </Carousel>
     </div>
   );
