@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const distinctColors = [
   "bg-pink-500",
@@ -39,7 +40,8 @@ export default function AlumniHomepage() {
       title: "Alumni Networking Gala",
       date: "10",
       month: "Dec",
-      description: "An evening to reconnect and collaborate with fellow alumni.",
+      description:
+        "An evening to reconnect and collaborate with fellow alumni.",
     },
     {
       title: "Startup Pitch Contest",
@@ -51,19 +53,22 @@ export default function AlumniHomepage() {
       title: "Code for Good Hackathon",
       date: "8",
       month: "Jan",
-      description: "Collaborative coding event to develop solutions for social good.",
+      description:
+        "Collaborative coding event to develop solutions for social good.",
     },
     {
       title: "Tech Talk with Industry Leaders",
       date: "25",
       month: "Feb",
-      description: "Leading experts share their insights on emerging tech trends.",
+      description:
+        "Leading experts share their insights on emerging tech trends.",
     },
     {
       title: "Alumni Talent Showcase",
       date: "30",
       month: "Jul",
-      description: "Showcasing the diverse talents of alumni across various fields.",
+      description:
+        "Showcasing the diverse talents of alumni across various fields.",
     },
   ];
 
@@ -105,7 +110,7 @@ export default function AlumniHomepage() {
     if (!scrollContainer) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 1; 
+    const scrollSpeed = 1;
 
     const scroll = () => {
       scrollPosition += scrollSpeed;
@@ -130,25 +135,56 @@ export default function AlumniHomepage() {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
       {/* Hero Section */}
-      <section className="text-center py-16 bg-[#00016a] text-white" style={{}}>
-        <h1 className="text-4xl font-bold">Stay Connected. Build Stronger Bonds.</h1>
-        <p className="mt-2 text-lg">
-          Join a thriving community of professionals, mentors, and lifelong friends.
-        </p>
-        <div className="mt-4 space-x-4">
+      <motion.section
+        className="text-center py-16 bg-[#00016a] text-white"
+        style={{}}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" ,delay:1.2}}
+      >
+        <motion.h1
+          className="text-4xl font-bold"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
+        >
+          Stay Connected. Build Stronger Bonds.
+        </motion.h1>
+        <motion.p
+          className="mt-2 text-lg"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 1.8 }}
+        >
+          Join a thriving community of professionals, mentors, and lifelong
+          friends.
+        </motion.p>
+        <motion.div
+          className="mt-4 space-x-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
+        >
           <Button className="bg-white text-[#00016a] font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-500">
             Join Now
           </Button>
           <Button className="bg-gray-300 text-[#00016a] px-6 py-3 rounded-lg shadow-md hover:bg-gray-500">
             Explore Community
           </Button>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Featured Alumni Stories */}
       <section className="p-10 bg-white overflow-hidden">
-        <h2 className="text-2xl font-bold text-center">Alumni in Spotlight</h2>
-        <p className="text-center text-gray-600 mb-6">Meet alumni making an impact</p>
+        <motion.h2 className="text-2xl font-bold text-center" 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 2.4 }}>Alumni in Spotlight</motion.h2>
+        <motion.p className="text-center text-gray-600 mb-6" initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 2.8 }}>
+          Meet alumni making an impact
+        </motion.p>
         <div
           ref={scrollRef}
           className="flex overflow-x-hidden space-x-6"
@@ -162,7 +198,9 @@ export default function AlumniHomepage() {
             <div key={index} className="w-96 flex-shrink-0">
               <Card className="p-4">
                 <CardContent>
-                  <p className="font-semibold">{alumni.name}, {alumni.company}</p>
+                  <p className="font-semibold">
+                    {alumni.name}, {alumni.company}
+                  </p>
                   <p className="text-gray-600">{alumni.description}</p>
                 </CardContent>
               </Card>
@@ -176,7 +214,8 @@ export default function AlumniHomepage() {
         <h2 className="text-2xl font-bold text-center">Past Events</h2>
         <div className="flex flex-col gap-6 mt-6">
           {pastEvents.map((event, index) => {
-            const randomColor = distinctColors[Math.floor(Math.random() * distinctColors.length)];
+            const randomColor =
+              distinctColors[Math.floor(Math.random() * distinctColors.length)];
             return (
               <Card
                 key={index}
@@ -186,8 +225,12 @@ export default function AlumniHomepage() {
                   <div
                     className={`flex flex-col gap-1 w-20 h-20 rounded-md ${randomColor} p-2 justify-center items-center`}
                   >
-                    <h1 className="text-white text-4xl font-extrabold">{event.date}</h1>
-                    <p className="text-white text-sm font-medium">{event.month}</p>
+                    <h1 className="text-white text-4xl font-extrabold">
+                      {event.date}
+                    </h1>
+                    <p className="text-white text-sm font-medium">
+                      {event.month}
+                    </p>
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="font-semibold text-xl">{event.title}</p>

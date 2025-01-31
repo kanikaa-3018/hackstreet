@@ -1,116 +1,203 @@
-import React from "react";
-import { Card } from "@/components/ui/card";
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { FaCalendarAlt, FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const updates = [
+  {
+    title: "Alumni Meet 2025 Announced!",
+    date: "March 10, 2025",
+    description:
+      "Join us for a grand reunion with networking opportunities and guest speakers.",
+  },
+  {
+    title: "Career Fair 2025",
+    date: "April 5, 2025",
+    description:
+      "Explore job opportunities with top recruiters attending our alumni career fair.",
+  },
+  {
+    title: "New Mentorship Program Launched",
+    date: "May 20, 2025",
+    description:
+      "Connect with experienced alumni mentors to guide you in your career path.",
+  },
+  {
+    title: "Fundraising Drive for Scholarships",
+    date: "June 15, 2025",
+    description:
+      "Support future students by contributing to our alumni scholarship fund.",
+  },
+  {
+    title: "Upcoming Webinar: Tech Trends 2025",
+    date: "July 10, 2025",
+    description:
+      "Join industry leaders to explore the latest trends in technology and innovation.",
+  },
+  {
+    title: "Alumni Sports Meet 2025",
+    date: "August 25, 2025",
+    description:
+      "Reconnect with fellow alumni through a fun and competitive sports event.",
+  },
+  {
+    title: "Annual Research Symposium",
+    date: "September 30, 2025",
+    description:
+      "Showcase and discuss groundbreaking research conducted by alumni and faculty.",
+  },
+  {
+    title: "Entrepreneurship Bootcamp",
+    date: "October 20, 2025",
+    description:
+      "Learn from successful entrepreneurs and take your startup idea to the next level.",
+  },
+  {
+    title: "Tech Startup Pitch Competition",
+    date: "November 15, 2025",
+    description: "Pitch your startup ideas to investors and industry experts.",
+  },
+  {
+    title: "Alumni Leadership Awards",
+    date: "December 1, 2025",
+    description:
+      "Honoring alumni who have made significant contributions in their respective fields.",
+  },
+  {
+    title: "Global Alumni Networking Event",
+    date: "January 25, 2026",
+    description:
+      "Join alumni from around the world for a virtual networking event.",
+  },
+  {
+    title: "Social Impact Hackathon 2026",
+    date: "February 15, 2026",
+    description: "Collaborate on innovative solutions for social challenges.",
+  },
+  {
+    title: "Health & Wellness Retreat",
+    date: "March 10, 2026",
+    description:
+      "Join alumni for a relaxing retreat focusing on mental and physical health.",
+  },
+  {
+    title: "Alumni Art Exhibition",
+    date: "April 20, 2026",
+    description: "Explore the creative works of our talented alumni artists.",
+  },
+  {
+    title: "Alumni Talent Show",
+    date: "May 5, 2026",
+    description:
+      "Showcase your talents in music, dance, or other performances.",
+  },
+  {
+    title: "Alumni Book Club Launch",
+    date: "June 10, 2026",
+    description:
+      "Join our alumni book club to discuss and review thought-provoking books.",
+  },
+  {
+    title: "Networking Dinner for Entrepreneurs",
+    date: "July 18, 2026",
+    description:
+      "A networking dinner for alumni entrepreneurs to collaborate and share insights.",
+  },
+  {
+    title: "Sustainability Conference 2026",
+    date: "August 22, 2026",
+    description:
+      "Discuss sustainability practices and how to integrate them into business strategies.",
+  },
+  {
+    title: "Tech Talk Series: Future of AI",
+    date: "September 5, 2026",
+    description:
+      "Attend a series of talks from experts on the future of Artificial Intelligence.",
+  },
+  {
+    title: "Global Mentorship Summit",
+    date: "October 14, 2026",
+    description:
+      "Alumni mentors and mentees come together for a global summit on mentorship success.",
+  },
+];
 
 export default function UpdatesPage() {
-  // Sample data for updates
-  const updates = [
-    {
-      title: "Alumni Meet 2025 Announced!",
-      date: "January 28, 2025",
-      description: "Join us for the biggest alumni gathering of the year! Connect with old friends and network with professionals.",
-    },
-    {
-      title: "New Internship Program Launched",
-      date: "February 5, 2025",
-      description: "A new internship initiative for students, exclusively for alumni referrals. Apply now!",
-    },
-    {
-      title: "Alumni Spotlight: Success Stories",
-      date: "February 15, 2025",
-      description: "Read inspiring success stories of alumni who have made a significant impact in their industries.",
-    },
-  ];
-
-  const announcements = [
-    {
-      title: "Fundraising Campaign for Student Scholarships",
-      date: "March 1, 2025",
-      description: "Help support future students by contributing to our scholarship fund for deserving candidates.",
-    },
-    {
-      title: "University Ranked in Top 10!",
-      date: "March 10, 2025",
-      description: "Our institution has been ranked among the top 10 universities in the country, thanks to our alumni contributions!",
-    },
-  ];
-
-  const successStories = [
-    {
-      name: "Amit Sharma",
-      achievement: "Started a successful AI startup, now valued at $10M.",
-      year: "Batch of 2015",
-    },
-    {
-      name: "Neha Verma",
-      achievement: "Recognized among Forbes 30 Under 30 for innovation in healthcare.",
-      year: "Batch of 2012",
-    },
-    {
-      name: "Rahul Gupta",
-      achievement: "Now VP at Google, leading AI research.",
-      year: "Batch of 2010",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-gray-100 text-gray-900">
-      {/* Hero Section */}
-      <section className="text-center py-16 bg-blue-600 text-white">
-        <h1 className="text-5xl font-bold">Latest Updates & Announcements</h1>
-        <p className="mt-3 text-lg max-w-3xl mx-auto">
-          Stay informed about alumni news, university updates, success stories, and upcoming events.
-        </p>
-      </section>
-
-      {/* Recent Updates Section */}
-      <section className="p-12">
-        <h2 className="text-3xl font-bold text-center mb-6">Recent Updates</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {updates.map((update, index) => (
-            <Card key={index} className="p-6 bg-white shadow-lg rounded-lg">
-              <h3 className="text-xl font-bold">{update.title}</h3>
-              <p className="text-sm text-gray-600">{update.date}</p>
-              <p className="mt-2 text-gray-700">{update.description}</p>
-              <Button className="mt-4 w-full bg-blue-600 text-white hover:bg-blue-700">
-                Read More
+    const [visibleUpdates, setVisibleUpdates] = useState(3);
+  
+    const loadMore = () => {
+      setVisibleUpdates((prev) => prev + 3);
+    };
+  
+    return (
+      <div className="min-h-screen bg-gray-100 text-gray-900">
+        <div className="relative">
+          <motion.section
+            className="relative text-center py-20 bg-[#00016a] bg-opacity-80 text-white"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h1 className="text-5xl font-bold">Latest Updates</h1>
+            <p className="mt-3 text-lg">
+              Stay informed about alumni news, events, and initiatives.
+            </p>
+          </motion.section>
+        </div>
+  
+        <section className="py-12 px-6 min-w-4xl max-w-6xl mx-auto">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          >
+            {updates.slice(0, visibleUpdates).map((update, index) => (
+              <Card
+                key={index}
+                className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition"
+              >
+                <CardContent className="p-6 flex flex-col justify-between h-full">
+                  <div className="flex items-center gap-2 mb-2">
+                    <FaCalendarAlt className="text-gray-500 text-lg" />
+                    <p className="text-sm text-gray-500">{update.date}</p>
+                  </div>
+                  <div className="flex flex-col mb-4">
+                    <h2 className="font-bold text-xl mb-2">{update.title}</h2>
+                    <p className="text-gray-700 text-ellipsis overflow-hidden">
+                      {update.description}
+                    </p>
+                  </div>
+                  <a href="https://iiitm.ac.in/index.php/en/" target="_blank" rel="noopener noreferrer">
+                    <Button className="mt-4 w-full bg-[#00016a] hover:bg-gray-500 text-white py-2 flex items-center justify-center">
+                      Learn More <FaArrowRight className="ml-2" />
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </motion.div>
+          {visibleUpdates < updates.length && (
+            <motion.div className="flex justify-center mt-6" initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}>
+              <Button
+                onClick={loadMore}
+                className="bg-[#00016a] hover:bg-gray-500 text-white py-2 px-6 rounded-lg"
+              >
+                Load More
               </Button>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Announcements & Notices */}
-      <section className="p-12 bg-gray-200">
-        <h2 className="text-3xl font-bold text-center mb-6">Announcements & Notices</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {announcements.map((announcement, index) => (
-            <Card key={index} className="p-6 bg-white shadow-lg rounded-lg">
-              <h3 className="text-xl font-bold">{announcement.title}</h3>
-              <p className="text-sm text-gray-600">{announcement.date}</p>
-              <p className="mt-2 text-gray-700">{announcement.description}</p>
-              <Button className="mt-4 w-full bg-blue-600 text-white hover:bg-blue-700">
-                Learn More
-              </Button>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Newsletter Subscription */}
-      <section className="p-12 bg-gray-200 text-center">
-        <h2 className="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-        <p className="text-lg text-gray-700 mb-6">
-          Get the latest updates, news, and events directly in your inbox.
-        </p>
-        <div className="flex justify-center">
-          <Input type="email" placeholder="Enter your email" className="w-80 p-3 rounded-l-lg border border-gray-300" />
-          <Button className="bg-blue-600 text-white px-6 py-3 rounded-r-lg hover:bg-blue-700">
-            Subscribe
-          </Button>
-        </div>
-      </section>
-    </div>
-  );
-}
+            </motion.div>
+          )}
+        </section>
+  
+        <footer className="bg-gray-900 text-white text-center py-6 mt-10">
+          <p className="text-sm">
+            &copy; 2025 Alumni Association | Stay Connected, Stay Updated!
+          </p>
+        </footer>
+      </div>
+    );
+  }

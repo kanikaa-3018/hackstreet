@@ -12,6 +12,7 @@ import convo3 from "../../public/convo3.jpg";
 import convo4 from "../../public/convo4.jpg";
 import convo5 from "../../public/convo5.jpg";
 import convo6 from "../../public/convo6.jpg";
+import { motion } from "framer-motion";
 
 const images = [
   {
@@ -65,7 +66,12 @@ const HeroSection = () => {
         >
           {images.map((img, index) => (
             <CarouselItem key={index} className="w-full">
-              <div className="w-full">
+              <motion.div
+                className="w-full"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
                 <img
                   src={img.src}
                   alt={`Slide ${index + 1}`}
@@ -74,7 +80,7 @@ const HeroSection = () => {
                 <p className="pt-2 text-xl font-semibold text-center text-white h-[50px] w-full bg-gradient-to-t from-black via-[#00016A] to-[#353556] shadow-[0px_-10px_20px_rgba(0,0,0,0.5)]">
                   {img.quote}
                 </p>
-              </div>
+              </motion.div>
             </CarouselItem>
           ))}
         </CarouselContent>
