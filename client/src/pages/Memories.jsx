@@ -1,6 +1,3 @@
-
-//memories
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -24,25 +21,47 @@ export default function MemoriesPage() {
     { image: "https://i.pinimg.com/736x/94/f1/95/94f1951b051a067527da0103f2e680bc.jpg" },
     { image: "https://i.pinimg.com/736x/d3/56/63/d3566319fd06a0cf9e7b90e71e78e214.jpg" },
     { image: "https://i.pinimg.com/736x/e9/9c/e8/e99ce8d60a13a7c56bc961e3de75893e.jpg" },
-    { image: "https://i.pinimg.com/736x/17/59/24/1759245bb6f3c3b336e623ad7b73e07f.jpg" },
-    { image: "https://i.pinimg.com/736x/19/15/9c/19159cd4d278a19af64ce71794e5e70f.jpg" },
-    { image: "https://i.pinimg.com/736x/0a/12/f8/0a12f8a1fbb50c24416fa8bffee15d15.jpg" },
-    { image: "https://i.pinimg.com/736x/c9/9e/dc/c99edcc9fa35736779c96ac0dda02465.jpg" },
-    { image: "https://i.pinimg.com/736x/84/54/cb/8454cbc60fa61422ba2dd7a8981ea56b.jpg" },
-    { image: "https://i.pinimg.com/736x/4f/9e/f7/4f9ef757556ccba179f8922b8ece7599.jpg" }
+    { image: "https://images.indianexpress.com/2021/02/DU-1200-1.jpg" },
+    { image: "https://www.iiad.edu.in/wp-content/uploads/2022/05/image2-6-1024x725.webp"},
+    { image: "https://www.sjchs.edu.in/wp-content/uploads/2023/01/DIWALI-CELEBRATION.jpg" },
+    { image: "https://files.prokerala.com/news/photos/imgs/1024/college-students-celebrate-diwali-in-chennai-on-469599.jpg" },
+    { image: "https://images.memphistours.com/large/918111627_20110820-134628.Full_1.jpg" },
+    { image: "https://th.bing.com/th/id/R.c7e559b5b1a8943996287354c9884c8c?rik=6mUtQffU%2fBSzIg&riu=http%3a%2f%2fs1.travix.com%2fas%2fasia-japan-kamakura-fireworks-medium.jpg&ehk=9fUbNOmhyGiEF8Wkk3WcT%2bp0EwmsZaTpQZR56NCbs6Y%3d&risl=&pid=ImgRaw&r=0" }
   ]);
 
   return (
     <div className="p-5 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-6">Alumni Memories</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <motion.h1
+        className="text-3xl font-bold text-center mb-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        Alumni Memories
+      </motion.h1>
+      <motion.div
+        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+      >
         {memories.map((mem, index) => (
-          <motion.div key={index} whileHover={{ scale: 1.05 }} className="relative">
-            <img src={mem.image} alt="Memory" className="w-full h-72 object-cover rounded-lg shadow-lg" />
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }}
+            className="relative"
+          >
+            <img
+              src={mem.image}
+              alt="Memory"
+              className="w-full h-72 object-cover rounded-lg shadow-lg"
+            />
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
-

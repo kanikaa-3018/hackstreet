@@ -21,6 +21,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Chatbot from "./components/Chatbot";
 import ChatPage from "./pages/ChatPage";
+import MemoriesPage from "./pages/Memories";
 
 function App() {
   return (
@@ -43,11 +44,11 @@ function App() {
           }
         />
 
-        <Route path="/events" element={<Event />}></Route>
+        <Route path="/events" element={<Event/>}></Route>
         <Route path="/newsletter" element={<NewsletterPage />}></Route>
-        <Route path="/updates" element={<UpdatesPage />}></Route>
-
-        <Route path="/community" element={<Community />}></Route>
+        <Route path="/updates" element={<UpdatesPage/>}></Route>
+        <Route path="/memories" element={<MemoriesPage/>}></Route>
+        <Route path="/community" element={<Community/>}></Route>
 
         <Route path="/chat" element={<ChatPage />}></Route>
 
