@@ -101,7 +101,7 @@ export const loginController = async (req, res) => {
 
     
     const token = jwt.sign({ id: alumni._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
 
     res.status(200).json({
@@ -160,6 +160,29 @@ export const getAlumniProfile = async (req, res) => {
     console.error("Error fetching alumni profile:", error);
     res.status(500).json({
       message: "Server Error",
+      error: error.message,
+      success: false,
+    });
+  }
+};
+export const getAllAlumnis = async (req, res) => {
+  try {
+    const alumniList = await alumniModel.find().select("-password"); // Excluding passwords for security
+
+    if (!alumniList || alumniList.length === 0) {
+      return res.status(404).json({
+        message: "No alumni found",
+        success: false,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      alumni: alumniList,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
       error: error.message,
       success: false,
     });
@@ -238,6 +261,35 @@ export const connectAlumni = async (req, res) => {
     await otherAlumni.save();
 
     res.status(200).json({ message: "Connected successfully", connections: loggedInAlumni.connections });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+export const disconnectAlumni = async (req, res) => {
+  try {
+    const { alumniId } = req.body; 
+    console.log(alumniId)// ID of the alumni to disconnect from
+    const loggedInAlumni = await alumniModel.findById(req.alumni.id);
+
+    if (!loggedInAlumni) {
+      return res.status(404).json({ message: "Alumni not found" });
+    }
+
+    if (!loggedInAlumni.connections.includes(alumniId)) {
+      return res.status(400).json({ message: "Not connected with this alumni" });
+    }
+
+    loggedInAlumni.connections = loggedInAlumni.connections.filter(id => id.toString() !== alumniId);
+    await loggedInAlumni.save();
+
+    // Remove loggedInAlumni from the otherAlumni's connections
+    const otherAlumni = await alumniModel.findById(alumniId);
+    if (otherAlumni) {
+      otherAlumni.connections = otherAlumni.connections.filter(id => id.toString() !== req.alumni.id);
+      await otherAlumni.save();
+    }
+
+    res.status(200).json({ message: "Disconnected successfully", connections: loggedInAlumni.connections });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
