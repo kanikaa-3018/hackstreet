@@ -8,7 +8,7 @@ import convo16 from '../../public/convo16.jpg';
 const createCustomIcon = (color) => {
   return L.divIcon({
     className: 'custom-marker',
-    html: <div style="background-color: ${color}; width: 30px; height: 30px; border-radius: 50%; border: 2px solid white;"></div>,
+    html: `<div style="background-color: ${color}; width: 30px; height: 30px; border-radius: 50%; border: 2px solid white;"></div>`,
     iconSize: [30, 30],
     iconAnchor: [15, 15],
     popupAnchor: [0, -15],
@@ -58,7 +58,7 @@ const Community = () => {
         const icon = createCustomIcon(marker.color);
         const mapMarker = L.marker(marker.position, { icon })
           .addTo(mapInstanceRef.current)
-          .bindPopup(<b>${marker.label}</b><br>${marker.place});
+          .bindPopup(`<b>${marker.label}</b><br>${marker.place}`);
 
         mapMarker.on('mouseover', () => {
           mapMarker.openPopup();
@@ -89,9 +89,15 @@ const Community = () => {
         </p>
       </section>
 
-
       {/* Header Section with Background Image */}
-      <header className="community-header" style={{ backgroundImage: url(${convo16}), backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <header
+        className="community-header"
+        style={{
+          backgroundImage: `url(${convo16})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <div className="community-overlay position-relative">
           <h1 className='font-semibold'>ABV-IIITM Alumni Association</h1>
           <p>
@@ -104,7 +110,7 @@ const Community = () => {
       {/* Map Container */}
       <div
         ref={mapRef}
-        className="h-[600px] mx-auto my-16 relative" // Increased the height for the banner
+        className="h-[600px] mx-auto my-16 relative"
         style={{
           maxWidth: '100%',
           width: '80%',
