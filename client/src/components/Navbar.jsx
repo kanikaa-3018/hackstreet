@@ -41,14 +41,17 @@ const Navbar = () => {
         <Link to="/events" className="hover:underline font-semibold">
           Events
         </Link>
-        <Link to="/about" className="hover:underline font-semibold">
-          About
+        <Link to="/memories" className="hover:underline font-semibold">
+          Memories
         </Link>
         <Link to="/updates" className="hover:underline font-semibold">
           Updates
         </Link>
         <Link to="/newsletter" className="hover:underline font-semibold">
           Newsletter
+        </Link>
+        <Link to="/community" className="hover:underline font-semibold">
+          Community
         </Link>
         <div className="ml-auto -mr-8">
           <LuMessageSquareText />

@@ -11,6 +11,10 @@ import NewsletterPage from './pages/Newsletter'
 import UpdatesPage from './pages/Update'
 
 import Profile from './pages/Profile'
+import Community from './pages/Community'
+import MemoriesPage from './pages/Memories'
+
+
 
 
 function App() {
@@ -26,10 +30,13 @@ function App() {
         <Route path='/events' element={<Event/>}></Route>
         <Route path='/newsletter' element={<NewsletterPage/>}></Route>
         <Route path='/updates' element={<UpdatesPage/>}></Route>
+        <Route path='/community' element={<Community/>}></Route>
 
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/memories' element={<MemoriesPage/>}></Route>
 
       </Routes>
+      
       <Footer/>
       </BrowserRouter>
     </div>

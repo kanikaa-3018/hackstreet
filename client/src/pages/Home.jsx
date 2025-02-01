@@ -4,6 +4,8 @@ import NotableAlumni from '../components/NotableAlumni'
 import About from '../components/About'
 import Extra from '../components/Extra'
 import { motion } from "framer-motion";
+import Community from './Community'
+import Testimonials from '../components/Testimonial'
 
 const Home = () => {
   return (
@@ -12,6 +14,8 @@ const Home = () => {
       <NotableAlumni/>
       <About/>
       <Extra/>
+      <Testimonials/>
+      
     </div>
   )
 }
