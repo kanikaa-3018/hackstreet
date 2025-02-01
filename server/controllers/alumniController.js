@@ -2,7 +2,7 @@ import alumniModel from "../models/alumniModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import fs from 'fs';
-import uploadToCloudinary from "../utils/cloudinary.js"
+import {uploadToCloudinary,deleteFromCloudinary} from "../utils/cloudinary.js"
 
 export const signupController = async (req, res) => {
   try {
@@ -17,10 +17,25 @@ export const signupController = async (req, res) => {
       currentLocation,
       company,
       bio,
-      linkedin,
       instagram,
-      profileImage,
+      linkedin,
+      profileImage
     } = req.body;
+
+    if (!name || !email || !password || !year || !batch || !phone || !position || !currentLocation || !company) {
+      return res.status(400).json({
+        message: "Missing required fields",
+        success: false,
+      });
+   }
+   
+
+
+    let profileImageUrl = '';
+    if (req.file) {
+      profileImageUrl = await uploadToCloudinary(req.file.path);
+      fs.unlinkSync(req.file.path); // Remove local file after upload
+    }
 
     const emailExists = await alumniModel.findOne({ email });
     if (emailExists) {
@@ -120,27 +135,41 @@ export const loginController = async (req, res) => {
 
 export const getAlumniProfile = async (req, res) => {
   try {
-    const alumni = await alumniModel
-      .findById(req.alumni.id)
-      .select("-password"); 
-    if (!alumni) {
-      return res
-        .status(404)
-        .json({ message: "Alumni not found", success: false });
+    console.log("Request Alumni:", req.alumni); // Debugging
+
+    if (!req.alumni || !req.alumni.id) {
+      return res.status(400).json({ message: "User ID missing", success: false });
     }
 
-    res.status(200).json({ success: true, alumni });
+    const alumni = await alumniModel
+      .findById(req.alumni.id)
+      .select("-password");
+
+    if (!alumni) {
+      return res.status(404).json({ message: "Alumni not found", success: false });
+    }
+
+    res.status(200).json({
+      success: true,
+      alumni,
+      token: req.token, // Sending token in response
+    });
+
+    console.log("Fetched Alumni:", alumni); // Debugging
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Server Error", error: error.message, success: false });
+    console.error("Error fetching alumni profile:", error);
+    res.status(500).json({
+      message: "Server Error",
+      error: error.message,
+      success: false,
+    });
   }
 };
 
 
 export const editAlumniProfile = async (req, res) => {
   try {
-    
+    // Find the alumni profile by ID
     const alumni = await alumniModel
       .findById(req.alumni.id)
       .select("-password");
@@ -149,34 +178,39 @@ export const editAlumniProfile = async (req, res) => {
       return res.status(404).json({ msg: "Alumni profile not found" });
     }
 
-    
-    const { name, email, bio, position,currentLocation } = req.body;
-    let profileImage = alumni.profileImage; 
+    const { name, email, bio, position, currentLocation } = req.body;
+    let profileImage = alumni.profileImage;  
 
     
     if (req.file) {
-      const cloudinaryImageUrl = await uploadToCloudinary(req.file.path);
-
       
-      profileImage = cloudinaryImageUrl;
+      if (alumni.profileImage) {
+        const publicId = alumni.profileImage.split('/').pop().split('.')[0]; // Extract the public ID of the old image
+        await deleteFromCloudinary(publicId);  // Delete the old image from Cloudinary
+      }
+      const cloudinaryImageUrl = await uploadToCloudinary(req.file.path);
+      profileImage = cloudinaryImageUrl; 
       fs.unlinkSync(req.file.path);
     }
 
+    
     alumni.name = name || alumni.name;
     alumni.email = email || alumni.email;
     alumni.bio = bio || alumni.bio;
     alumni.position = position || alumni.position;
     alumni.currentLocation = currentLocation || alumni.currentLocation;
-    alumni.profileImage = profileImage || alumni.profileImage;  
+    alumni.profileImage = profileImage || alumni.profileImage;  // Update profileImage if it changed
 
+    // Save the updated alumni profile
     await alumni.save();
-    res.status(200).json(alumni);
+    res.status(200).json(alumni); 
 
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");
   }
 };
+
 
 
 export const connectAlumni = async (req, res) => {

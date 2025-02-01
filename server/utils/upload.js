@@ -1,13 +1,16 @@
-import multer from "multer";
+import multer from 'multer';
+import path from 'path';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, 'uploads/'); // Specify the folder to save images
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // Make filename unique
-  },
+    cb(null, Date.now() + path.extname(file.originalname)); // Rename the file to prevent name conflicts
+  }
 });
+
+
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];

@@ -8,17 +8,20 @@ cloudinary.config({
 });
 
 // Upload function
-const uploadToCloudinary = async (filePath) => {
-  try {
-    const result = await cloudinary.uploader.upload(filePath, {
-      folder: 'alumni_profile_images',
-      transformation: [{ width: 500, height: 500, crop: 'fill' }],
+export const uploadToCloudinary = (filePath) => {
+  return new Promise((resolve, reject) => {
+    cloudinary.v2.uploader.upload(filePath, (error, result) => {
+      if (error) return reject(error);
+      resolve(result.secure_url); 
     });
-    return result.secure_url;
-  } catch (error) {
-    throw new Error("Cloudinary upload failed");
-  }
+  });
 };
 
-// Exporting the function as default
-export default uploadToCloudinary;
+export const deleteFromCloudinary = (publicId) => {
+  return new Promise((resolve, reject) => {
+    cloudinary.v2.uploader.destroy(publicId, (error, result) => {
+      if (error) return reject(error);
+      resolve(result);
+    });
+  });
+};

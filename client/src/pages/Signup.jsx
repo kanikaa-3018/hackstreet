@@ -8,21 +8,22 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    graduationYear: "",
+    year: "",
     batch: "",
     phone: "",
-    currentPosition: "",
+    position: "",
     currentLocation: "",
     company: "",
-    linkedin: "",
-    instagram: "",
-    shortBio: "",
     profileImage: null,
+    instagram: "",
+    linkedin: "",
+    bio: "",
   });
-  
+
   const navigate = useNavigate();
 
-  
+
+
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -38,33 +39,54 @@ const Signup = () => {
     }
   };
 
- 
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const form = new FormData();
-    for (let key in formData) {
-      form.append(key, formData[key]);
-    }
+    const jsonData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      year: formData.year,
+      batch: formData.batch,
+      phone: formData.phone,
+      position: formData.position,
+      currentLocation: formData.currentLocation,
+      company: formData.company,
+      bio: formData.bio,
+      linkedin: formData.linkedin,
+      instagram: formData.instagram,
+      profileImage: formData.profileImage ? formData.profileImage.name : null, // send file name if image is selected
+    };
+
+    console.log(jsonData); 
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/v1/alumni/signup", 
-        form,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response.data);
+      console.log("Signup start");
+      const response = await fetch("http://localhost:4000/api/v1/alumni/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(jsonData), // Send the JSON data
+      });
+      console.log("Signup end");
+      
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Error during signup");
+      }
+
+      const data = await response.json(); // Parse the JSON response
+      console.log(data); 
       navigate("/login"); 
     } catch (error) {
-      console.error("Error during signup:", error.response?.data?.message || error.message);
-      alert("Signup failed, please try again.");
-    }
-  };
+      console.error("Error during signup:", error);
+      alert("Signup failed, please try again."); 
 
+    }};
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg flex overflow-hidden">
@@ -139,8 +161,8 @@ const Signup = () => {
                 </label>
                 <input
                   type="number"
-                  name="graduationYear"
-                  value={formData.graduationYear}
+                  name="year"
+                  value={formData.year}
                   onChange={handleChange}
                   placeholder="Year"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
@@ -181,8 +203,8 @@ const Signup = () => {
               </label>
               <input
                 type="text"
-                name="currentPosition"
-                value={formData.currentPosition}
+                name="position"
+                value={formData.position}
                 onChange={handleChange}
                 placeholder="Your current role"
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
@@ -250,8 +272,8 @@ const Signup = () => {
                 Short Bio
               </label>
               <textarea
-                name="shortBio"
-                value={formData.shortBio}
+                name="bio"
+                value={formData.bio}
                 onChange={handleChange}
                 placeholder="Tell us about yourself"
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
