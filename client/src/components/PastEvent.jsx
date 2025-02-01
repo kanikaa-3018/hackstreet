@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
 
 const distinctColors = [
   "bg-pink-500",
@@ -14,133 +15,80 @@ const distinctColors = [
   "bg-indigo-500",
 ];
 
+const pastEvents = [
+  {
+    title: "Annual Alumni Meet 2023",
+    date: "18",
+    month: "Mar",
+    description: "A grand reunion with over 500 alumni attending.",
+  },
+  {
+    title: "Tech Summit 2022",
+    date: "22",
+    month: "Nov",
+    description: "Exploring advancements in AI and ML with industry leaders.",
+  },
+  {
+    title: "Career Guidance Webinar",
+    date: "5",
+    month: "Aug",
+    description: "Helping young graduates navigate their career paths.",
+  },
+  {
+    title: "Alumni Networking Gala",
+    date: "10",
+    month: "Dec",
+    description:
+      "An evening to reconnect and collaborate with fellow alumni.",
+  },
+  {
+    title: "Startup Pitch Contest",
+    date: "15",
+    month: "Sep",
+    description: "Alumni entrepreneurs pitch their innovative startup ideas.",
+  },
+  {
+    title: "Code for Good Hackathon",
+    date: "8",
+    month: "Jan",
+    description:
+      "Collaborative coding event to develop solutions for social good.",
+  },
+  {
+    title: "Tech Talk with Industry Leaders",
+    date: "25",
+    month: "Feb",
+    description:
+      "Leading experts share their insights on emerging tech trends.",
+  },
+  {
+    title: "Alumni Talent Showcase",
+    date: "30",
+    month: "Jul",
+    description:
+      "Showcasing the diverse talents of alumni across various fields.",
+  },
+];
+
 export default function AlumniHomepage() {
-  const scrollRef = useRef(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-  const pastEvents = [
-    {
-      title: "Annual Alumni Meet 2023",
-      date: "18",
-      month: "Mar",
-      description: "A grand reunion with over 500 alumni attending.",
-    },
-    {
-      title: "Tech Summit 2022",
-      date: "22",
-      month: "Nov",
-      description: "Exploring advancements in AI and ML with industry leaders.",
-    },
-    {
-      title: "Career Guidance Webinar",
-      date: "5",
-      month: "Aug",
-      description: "Helping young graduates navigate their career paths.",
-    },
-    {
-      title: "Alumni Networking Gala",
-      date: "10",
-      month: "Dec",
-      description:
-        "An evening to reconnect and collaborate with fellow alumni.",
-    },
-    {
-      title: "Startup Pitch Contest",
-      date: "15",
-      month: "Sep",
-      description: "Alumni entrepreneurs pitch their innovative startup ideas.",
-    },
-    {
-      title: "Code for Good Hackathon",
-      date: "8",
-      month: "Jan",
-      description:
-        "Collaborative coding event to develop solutions for social good.",
-    },
-    {
-      title: "Tech Talk with Industry Leaders",
-      date: "25",
-      month: "Feb",
-      description:
-        "Leading experts share their insights on emerging tech trends.",
-    },
-    {
-      title: "Alumni Talent Showcase",
-      date: "30",
-      month: "Jul",
-      description:
-        "Showcasing the diverse talents of alumni across various fields.",
-    },
-  ];
+  const handleJoinNowClick = () => {
+    setShowPopup(true);
+  };
 
-  const alumniData = [
-    {
-      name: "Apeksha Jain",
-      company: "Google",
-      description: "Building AI-driven solutions at Google.",
-    },
-    {
-      name: "Rahul Mehta",
-      company: "Microsoft",
-      description: "Working on Azure cloud innovations.",
-    },
-    {
-      name: "Ananya Verma",
-      company: "Amazon",
-      description: "Scaling AWS infrastructure worldwide.",
-    },
-    {
-      name: "Vishal Kumar",
-      company: "Facebook",
-      description: "Driving innovation at Meta.",
-    },
-    {
-      name: "Neha Gupta",
-      company: "Apple",
-      description: "Leading design for iOS apps.",
-    },
-    {
-      name: "Sanjay Singh",
-      company: "Tesla",
-      description: "Revolutionizing electric vehicles.",
-    },
-  ];
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    let scrollPosition = 0;
-    const scrollSpeed = 1;
-
-    const scroll = () => {
-      scrollPosition += scrollSpeed;
-
-      if (scrollPosition >= scrollContainer.scrollWidth / 2) {
-        scrollPosition = 0;
-        scrollContainer.scrollLeft = 0;
-      } else {
-        scrollContainer.scrollLeft = scrollPosition;
-      }
-
-      requestAnimationFrame(scroll);
-    };
-
-    const animation = requestAnimationFrame(scroll);
-
-    return () => cancelAnimationFrame(animation);
-  }, []);
-
-  const doubledAlumniData = [...alumniData, ...alumniData];
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
       {/* Hero Section */}
       <motion.section
         className="text-center py-16 bg-[#00016a] text-white"
-        style={{}}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" ,delay:1.2}}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
       >
         <motion.h1
           className="text-4xl font-bold"
@@ -165,53 +113,45 @@ export default function AlumniHomepage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
         >
-          <Button className="bg-white text-[#00016a] font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-500">
+          <Button
+            className="bg-white text-[#00016a] font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-500"
+            onClick={handleJoinNowClick}
+          >
             Join Now
           </Button>
-          <Button className="bg-gray-300 text-[#00016a] px-6 py-3 rounded-lg shadow-md hover:bg-gray-500">
-            Explore Community
-          </Button>
+          <Link to="/community">
+            <Button
+              className="bg-gray-300 text-[#00016a] px-6 py-3 rounded-lg shadow-md hover:bg-gray-500"
+            >
+              Explore Community
+            </Button>
+          </Link>
         </motion.div>
       </motion.section>
 
-      {/* Featured Alumni Stories */}
-      <section className="p-10 bg-white overflow-hidden">
-        <motion.h2 className="text-2xl font-bold text-center" 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 2.4 }}>Alumni in Spotlight</motion.h2>
-        <motion.p className="text-center text-gray-600 mb-6" initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 2.8 }}>
-          Meet alumni making an impact
-        </motion.p>
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-hidden space-x-6"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            WebkitOverflowScrolling: "touch",
-          }}
-        >
-          {doubledAlumniData.map((alumni, index) => (
-            <div key={index} className="w-96 flex-shrink-0">
-              <Card className="p-4">
-                <CardContent>
-                  <p className="font-semibold">
-                    {alumni.name}, {alumni.company}
-                  </p>
-                  <p className="text-gray-600">{alumni.description}</p>
-                </CardContent>
-              </Card>
+      {/* Popup */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg relative">
+            <button
+              onClick={closePopup}
+              className="absolute top-2 right-2 text-xl text-gray-500 hover:text-gray-700"
+            >
+              &times;
+            </button>
+            <div className="flex flex-col items-center">
+              <div className="text-4xl text-green-700">&#10004;</div>
+              <h3 className="mt-4 text-xl font-semibold text-gray-800">
+                Congratulations, You've Joined!
+              </h3>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
+      )}
 
       {/* Past Events Section */}
       <section className="p-10 bg-white">
-        <h2 className="text-2xl font-bold text-center">Past Events</h2>
+        <h2 className="text-4xl font-bold text-center">Past Events</h2>
         <div className="flex flex-col gap-6 mt-6">
           {pastEvents.map((event, index) => {
             const randomColor =

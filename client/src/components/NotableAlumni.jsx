@@ -15,6 +15,7 @@ import al5 from "../../public/al5.jpeg";
 import al6 from "../../public/al6.jpeg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { FaLinkedin, FaGithub, FaGlobe } from "react-icons/fa"; // Importing icon libraries
 import { motion } from "framer-motion";
 
 const alumniData = [
@@ -24,6 +25,9 @@ const alumniData = [
     job: "Software Engineer at Google",
     bio: "Passionate about AI and cloud computing, John has contributed to various open-source projects.",
     image: al1,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
   {
     name: "Jane Smith",
@@ -31,6 +35,9 @@ const alumniData = [
     job: "Product Manager at Microsoft",
     bio: "Jane is a strategic thinker who excels in user experience and product development.",
     image: al2,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
   {
     name: "Alex Johnson",
@@ -38,6 +45,9 @@ const alumniData = [
     job: "Data Scientist at Tesla",
     bio: "Alex specializes in machine learning and data analytics, working on cutting-edge AI models.",
     image: al3,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
   {
     name: "Emily Davis",
@@ -45,6 +55,9 @@ const alumniData = [
     job: "Cybersecurity Analyst at IBM",
     bio: "Emily focuses on ethical hacking and security analysis to protect digital assets.",
     image: al4,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
   {
     name: "Michael Brown",
@@ -52,6 +65,9 @@ const alumniData = [
     job: "Blockchain Developer at CoinS",
     bio: "Michael is a blockchain enthusiast, building secure and decentralized applications.",
     image: al5,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
   {
     name: "Sophia Wilson",
@@ -59,6 +75,9 @@ const alumniData = [
     job: "UX Designer at Adobe",
     bio: "Sophia is a creative UX designer crafting intuitive and accessible digital experiences.",
     image: al6,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
   {
     name: "David Martinez",
@@ -66,6 +85,9 @@ const alumniData = [
     job: "Cloud Engineer at AWS",
     bio: "David specializes in cloud computing, optimizing infrastructure for high-scale applications.",
     image: al4,
+    linkedin: "#",
+    github: "#",
+    website: "#",
   },
 ];
 
@@ -116,11 +138,33 @@ const NotableAlumni = () => {
               .map((alumni, index) => (
                 <Card key={index} className="w-[300px] shadow-lg">
                   <CardHeader className="flex items-center flex-col">
-                    <img
-                      src={alumni.image}
-                      alt={alumni.name}
-                      className="w-32 h-32 object-cover rounded-full border-4 border-gray-300"
-                    />
+                    <div
+                      className="image-container relative"
+                      style={{
+                        width: "160px",
+                        height: "160px",
+                        overflow: "hidden",
+                        borderRadius: "50%",
+                        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+                      }}
+                    >
+                      <img
+                        src={alumni.image}
+                        alt={alumni.name}
+                        className="w-full h-full object-cover transform transition-all duration-500"
+                        style={{
+                          transformStyle: "preserve-3d",
+                          backfaceVisibility: "hidden",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.transform = "rotateY(180deg)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.transform = "rotateY(0deg)";
+                        }}
+                      />
+                    </div>
+
                     <CardTitle className="mt-4 text-xl font-semibold">
                       {alumni.name}
                     </CardTitle>
