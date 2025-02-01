@@ -33,11 +33,12 @@ const Login = () => {
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         setUser(response.data.user); 
+        window.location.reload();
+        navigate("/");
+
       }
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed! ❌", {
         position: "top-right",
