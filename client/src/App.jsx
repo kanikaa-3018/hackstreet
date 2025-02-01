@@ -20,6 +20,7 @@ import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Chatbot from './components/Chatbot'
+import ChatPage from './pages/ChatPage'
 
 
 
@@ -44,6 +45,7 @@ function App() {
         <Route path='/events' element={<Event/>}></Route>
         <Route path='/newsletter' element={<NewsletterPage/>}></Route>
         <Route path='/updates' element={<UpdatesPage/>}></Route>
+        <Route path='/chat' element={<ChatPage/>}></Route>
 
         <Route path='/profile' element={<Profile/>}/>
 

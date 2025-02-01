@@ -22,6 +22,8 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+
+
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -37,68 +39,54 @@ const Signup = () => {
     }
   };
 
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const jsonData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      year: formData.year,
+      batch: formData.batch,
+      phone: formData.phone,
+      position: formData.position,
+      currentLocation: formData.currentLocation,
+      company: formData.company,
+      bio: formData.bio,
+      linkedin: formData.linkedin,
+      instagram: formData.instagram,
+      profileImage: formData.profileImage ? formData.profileImage.name : null, // send file name if image is selected
+    };
 
-    // Validate required fields before submission
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.password ||
-      !formData.year ||
-      !formData.batch ||
-      !formData.phone ||
-      !formData.position ||
-      !formData.currentLocation ||
-      !formData.company
-    ) {
-      alert("Please fill in all required fields");
-      return;
-    }
-    console.log(formData);
-
-    const form = new FormData();
-    if (formData.name) form.append("name", formData.name);
-    if (formData.email) form.append("email", formData.email);
-    if (formData.password) form.append("password", formData.password);
-    if (formData.year) form.append("year", formData.year);
-    if (formData.batch) form.append("batch", formData.batch);
-    if (formData.phone) form.append("phone", formData.phone);
-    if (formData.position) form.append("position", formData.position);
-    if (formData.currentLocation)
-      form.append("currentLocation", formData.currentLocation);
-    if (formData.company) form.append("company", formData.company);
-
-    // Optionally, you can append the profile image if it's available
-    if (formData.profileImage) {
-      form.append("profileImage", formData.profileImage);
-    }
+    console.log(jsonData); 
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/api/v1/alumni/signup",
-        form,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      console.log(response.data);
-      navigate("/login");
-    } catch (error) {
-      console.log("Signup Error:", {
-        message: error.response?.data?.message || error.message,
-        status: error.response?.status,
-        data: error.response?.data,
+      console.log("Signup start");
+      const response = await fetch("http://localhost:4000/api/v1/alumni/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(jsonData), // Send the JSON data
       });
-      alert(
-        error.response?.data?.message || "Signup failed, please try again."
-      );
-    }
-  };
+      console.log("Signup end");
+      
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Error during signup");
+      }
 
+      const data = await response.json(); // Parse the JSON response
+      console.log(data); 
+      navigate("/login"); 
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("Signup failed, please try again."); 
+
+    }};
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg flex overflow-hidden">
