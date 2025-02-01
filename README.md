@@ -1,6 +1,6 @@
 <div align="center">
   <h2>🔥 Join the Revolution!<a href="#">Alumni Nexus</a> is redefining alumni networking with AI-powered connections, real-time chats, and exclusive career opportunities. Stay connected, grow together, and make an impact! 🚀💙</h2>
-  <p>Complete <a href="https://docs.google.com/forms/d/1qpzW83s_cFEERsULgLghZYBppSewYk5CR3XP3O0xhFA/edit">this form</a> to provide feedback or sign up for progress updates.<br/><br/>
+  <p>Complete <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6yMaaqnb6p_UiXxl3xYagIEXk7UvaYmxKp79retvQWAEGQQ/viewform?usp=sharing">this form</a> to provide feedback or sign up for progress updates.<br/><br/>
   Updates will also be posted on the <a href="#">Alumni Nexus Github Page</a>.</p>
 </div>
 
@@ -16,10 +16,9 @@
   <p>Alumni Nexus is designed to *bridge the gap* between students, alumni, and institutions by offering *real-time networking, AI chatbot assistance, career opportunities, and event management*.</p>
   </details>
 
-  [![Live Demo](https://img.shields.io/badge/-Live%20Demo-%2322A6F2)](#) 
-  [![Latest Release](https://img.shields.io/github/v/tag/your-repo-name?label=Latest%20Release&style=social)](#)
-  [![GitHub Release Date](Feb 1,2025)](#)
-  [![Discuss](https://img.shields.io/badge/-Discuss-blue)](#)
+  [![Demo Video]()](#) 
+  [![Latest Release]](https://github.com/kanikaa-3018/hackstreet.git)
+  [![Discuss]](https://docs.google.com/forms/d/e/1FAIpQLSc6yMaaqnb6p_UiXxl3xYagIEXk7UvaYmxKp79retvQWAEGQQ/viewform?usp=sharing)
 </div>
 
 ---
@@ -47,8 +46,8 @@ Alumni Nexus is a *secure and intelligent alumni engagement platform* with featu
 <h2 align="center">📸 Screenshots</h2>
 
 <div align="center">
-  <img src="https://via.placeholder.com/600x300" alt="Homepage Screenshot">
-  <img src="https://via.placeholder.com/600x300" alt="Chat Screenshot">
+  <img src="https://media-hosting.imagekit.io//c39e1e43c6a84548/WhatsApp%20Image%202025-02-01%20at%2016.02.44_02a4e233.jpg?Expires=1833014004&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BVtdal2UFemutcksObvqoT63-HObb39uNlnc14v4IlaIlgkknGr8mOlMai0Zea8fOZb6rugmeERsgUKyabAMeUOYD-3xOsLn-1qowiZxh61Yy0XaT9FjinfTKhe3PwaFka3aCM8AYM2aVNWj7S~ZmqwJ34zofALRdzxFi7nHgFmj5VF5TxUUFHMWKxlwJv9XNtrcfsPmKQ9-8lsmdFpTIbbySSPANQRKCxc-LXagNvKgWz0MybO~NbHX4yixekZo22NhwMzZXWhlZZNwlrPsqpGLm6o-BvsGEQkVh8o0du3w4nVpOdIY3ixJAZX1F5GB061B3RQ2QSzMgugw-FdsjA__" alt="Homepage Screenshot">
+  <img src="" alt="Chat Screenshot">
 </div>
 
 ---
@@ -114,14 +113,6 @@ Create a .env file in the server directory and add:
 PORT=5000
 MONGO_URI=<your_mongodb_connection_string>
 JWT_SECRET=<your_jwt_secret>
-SOCKET_IO_PORT=5001
-OPENAI_API_KEY=<your_openai_api_key>
-```
-Create a .env file in the client directory and add:
-```env
-REACT_APP_AUTH0_DOMAIN=<your_auth0_domain>
-REACT_APP_AUTH0_CLIENT_ID=<your_auth0_client_id>
-REACT_APP_SOCKET_IO_URL=<backend_socket_url>
 ```
 ### 4️⃣ Run the Backend  
 ```bash
