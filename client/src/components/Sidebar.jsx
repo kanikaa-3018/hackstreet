@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import { FaUserPlus, FaUserCheck } from "react-icons/fa";
 import axios from "axios";
@@ -7,6 +7,9 @@ import axios from "axios";
 const Sidebar = () => {
   const [users, setUsers] = useState([]); // All alumni
   const [friends, setFriends] = useState([]); // Connected alumni
+  const [searchTerm,setSearchTerm]=useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate=useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,14 +56,63 @@ const Sidebar = () => {
     }
   };
 
+  //filter based on search input
+  const filteredUsers = users.filter(user => 
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  //handle search input
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setShowDropdown(value.length > 0); // Show dropdown if input is not empty
+  };
+  
+
   return (
     <div className="fixed left-0 top-[180px] w-80 h-full bg-gray-100 text-gray-800 shadow-lg p-4 transition-transform duration-600 overflow-y-auto">
       <h2 className="text-xl font-semibold mb-6 pb-2 px-4 border-b-2 border-gray-400">Dashboard</h2>
 
       {/* Search Bar */}
+      <div className="relative">
       <div className="w-full flex items-center gap-2 bg-white text-gray-800 h-10 px-4 rounded-full border border-gray-300 focus-within:ring-2">
         <MdSearch className="text-gray-600 text-xl" />
-        <input type="text" placeholder="Search your peers here..." className="bg-transparent text-sm w-full focus:outline-none" />
+        <input 
+        type="text" 
+        placeholder="Search your peers here..." 
+        className="bg-transparent text-sm w-full focus:outline-none" 
+        value={searchTerm}
+        onChange={handleSearch}
+
+        />
+        {/* <p className="text-sm text-gray-500 mt-2">
+  Showing {filteredUsers.length} results for "{searchTerm}"
+</p> */}
+
+      </div>
+      {/*Dropdown Results */}
+      {showDropdown && (
+          <ul className="absolute left-0 top-12 w-full bg-white border border-gray-300 shadow-lg rounded-md max-h-60 overflow-y-auto z-50">
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map(user => (
+                <li 
+                  key={user._id} 
+                  className="flex items-center gap-3 p-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleUserClick(user._id)}
+                >
+                  <img
+                    src={user.profileImage || "https://i.pinimg.com/236x/eb/8f/aa/eb8faa016a6b2e559d6b99541e1375c1.jpg"}
+                    alt={user.name}
+                    className="w-8 h-8 rounded-full object-cover border border-gray-400"
+                  />
+                  <span>{user.name}</span>
+                </li>
+              ))
+            ) : (
+              <li className="p-2 text-gray-500">No results found</li>
+            )}
+          </ul>
+        )}
       </div>
 
       {/* Navigation */}
