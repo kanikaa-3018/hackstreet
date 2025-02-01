@@ -90,12 +90,16 @@ const Community = () => {
       </section>
 
       {/* Header Section with Background Image */}
-      <header
-        className="community-header"
-        style={{
-          backgroundImage: `url(${convo16})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+
+      
+
+      <header 
+        className="community-header" 
+        style={{ 
+          backgroundImage: `url(${convo16})`, 
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center' 
+
         }}
       >
         <div className="community-overlay position-relative">
