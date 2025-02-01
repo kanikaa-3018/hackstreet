@@ -11,13 +11,15 @@ export const UserProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token"); 
-        const response = await axios.get("/api/v1/alumni", {
+        const response = await axios.get("http://localhost:4000/api/v1/alumni", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`, 
           },
           withCredentials: true, 
         });
+        console.log(token)
+        console.log(response)
 
         setUser(response.data); 
       } catch (error) {
