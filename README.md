@@ -1,7 +1,7 @@
 <div align="center">
   <h2>🔥 Join the Revolution!<a href="#">Alumni Nexus</a> is redefining alumni networking with AI-powered connections, real-time chats, and exclusive career opportunities. Stay connected, grow together, and make an impact! 🚀💙</h2>
-  <p>Complete <a href="#">this form</a> to provide feedback and sign up for progress updates.<br/><br/>
-  Updates will also be posted on the <a href="#">Alumni Nexus LinkedIn Page</a>.</p>
+  <p>Complete <a href="https://docs.google.com/forms/d/1qpzW83s_cFEERsULgLghZYBppSewYk5CR3XP3O0xhFA/edit">this form</a> to provide feedback or sign up for progress updates.<br/><br/>
+  Updates will also be posted on the <a href="#">Alumni Nexus Github Page</a>.</p>
 </div>
 
 ---
@@ -18,7 +18,7 @@
 
   [![Live Demo](https://img.shields.io/badge/-Live%20Demo-%2322A6F2)](#) 
   [![Latest Release](https://img.shields.io/github/v/tag/your-repo-name?label=Latest%20Release&style=social)](#)
-  [![GitHub Release Date](https://img.shields.io/github/release-date/your-repo-name?label=Released&style=social)](#)
+  [![GitHub Release Date](Feb 1,2025)](#)
   [![Discuss](https://img.shields.io/badge/-Discuss-blue)](#)
 </div>
 
@@ -41,21 +41,6 @@ Alumni Nexus is a *secure and intelligent alumni engagement platform* with featu
 
 👨‍🎓 *Students & Alumni* – Stay connected, explore opportunities, and network.  
 🏛 *Institutions* – Engage alumni for mentorship, placements, and academic collaborations.  
-
----
-
-<h2 align="center">💻 Technical Architecture</h2>
-
-| Stack | Technology |
-|-------|-----------|
-| *Frontend* | React.js + Tailwind CSS |
-| *Backend* | Node.js (Express.js) |
-| *Database* | MongoDB (NoSQL) |
-| *Authentication* | Auth0, JWT |
-| *Real-Time Chat* | WebSockets (Socket.io) |
-| *AI Chatbot* | OpenAI API Integration |
-| *Cloud Hosting* | AWS/GCP |
-| *Storage* | Firebase Storage / AWS S3 |
 
 ---
 
