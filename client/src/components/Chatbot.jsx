@@ -946,8 +946,10 @@ const ChatbotCombined = () => {
         headerTitle="College Assistant"
         recognitionEnable={true} // Enable speech recognition
         speechSynthesis={{
+
          // voiceAssistant: { backgroundColor: theme.botBubbleColor },
           
+
           enable: true,
           lang: "en",
           voice: femaleVoice,
@@ -958,11 +960,12 @@ const ChatbotCombined = () => {
           botMessageBox: { backgroundColor: theme.botBubbleColor },
           chatButton: { backgroundColor: theme.headerBgColor },
         }}
+
         Style={{
           voice: { backgroundColor: theme.botBubbleColor },
           
         }}
-       
+
       />
     </ThemeProvider>
   );

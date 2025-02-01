@@ -60,14 +60,14 @@ const Navbar = () => {
         <Link to="/community" className="hover:underline font-semibold">Community</Link>
 
         {/* Login / Logout Section */}
-        <div className=" flex items-center ml-[550px] gap-4 mr-2">
+        <div className=" flex items-center gap-2 ">
           {!user ? (
-            <Link to="/login" className="cursor-pointer hover:underline font-semibold">
+            <Link to="/login" className="cursor-pointer hover:underline font-semibold ml-[600px] sm:ml-8 md:ml-[600px] ">
               Login
             </Link>
           ) : (
 
-            <div className="flex gap-4 items-center ml-auto mr-2">
+            <div className="flex gap-4 items-center ml-[600px] sm:ml-8 md:ml-[550px]  ">
             
               <Link to="/profile" className="cursor-pointer hover:underline font-semibold">
                 {/* Circle with First Letter of Name */}
