@@ -15,7 +15,7 @@ import UpdatesPage from "./pages/Update";
 
 import Profile from "./pages/Profile";
 import Community from "./pages/Community";
-// import MemoriesPage from "./pages/Memories";
+import MemoriesPage from "./pages/Memories";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -52,7 +52,7 @@ function App() {
         <Route path="/chat" element={<ChatPage />}></Route>
 
         <Route path="/profile" element={<Profile />} />
-        {/* <Route path="/memories" element={<MemoriesPage />}></Route> */}
+        <Route path="/memories" element={<MemoriesPage />}></Route>
       </Routes>
 
       <Footer />
