@@ -24,7 +24,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="/event" className="text-gray-400 hover:text-white">
                   Events
                 </a>
               </li>
@@ -34,7 +34,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="https://iiitm.ac.in/index.php/en/component/content/category/97-admissions?Itemid=437" className="text-gray-400 hover:text-white">
                   Contact
                 </a>
               </li>
@@ -45,16 +45,16 @@ const Footer = () => {
           <div>
             <h2 className="text-xl font-semibold mb-3">Follow Us</h2>
             <div className="flex justify-center md:justify-start space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white text-xl">
+              <a href="https://www.facebook.com/iiitm/" className="text-gray-400 hover:text-white text-xl">
                 <FaFacebookF />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-xl">
+              <a href="https://x.com/i/flow/login?redirect_after_login=%2FAbvIiitm" className="text-gray-400 hover:text-white text-xl">
                 <FaTwitter />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-xl">
+              <a href="https://www.instagram.com/iiitmgwaliorofficial/reels/" className="text-gray-400 hover:text-white text-xl">
                 <FaInstagram />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-xl">
+              <a href="https://www.linkedin.com/school/abv-indian-institute-of-information-technology-and-management/posts/?feedView=all" className="text-gray-400 hover:text-white text-xl">
                 <FaLinkedinIn />
               </a>
             </div>

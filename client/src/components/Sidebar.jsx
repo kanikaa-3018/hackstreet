@@ -1,15 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import { FaUserPlus, FaUserCheck } from "react-icons/fa";
 import axios from "axios";
 
 const Sidebar = () => {
-  const [users, setUsers] = useState([]); // All alumni
-  const [friends, setFriends] = useState([]); // Connected alumni
-  const [searchTerm,setSearchTerm]=useState("");
+  const [users, setUsers] = useState([]);
+  const [friends, setFriends] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  const navigate=useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const sidebarRef = useRef(null);
+  const navigate = useNavigate();
+
+  // Click outside detection
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,12 +40,10 @@ const Sidebar = () => {
 
         if (allAlumniRes.data.success && Array.isArray(allAlumniRes.data.alumni)) {
           setUsers(allAlumniRes.data.alumni);
-          console.log(users)
         }
 
         if (friendsRes.data.connections) {
           setFriends(friendsRes.data.connections.map(friend => friend._id));
-          console.log(friends)
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,7 +58,6 @@ const Sidebar = () => {
   const toggleConnection = async (alumniId) => {
     try {
       const isConnected = friends.includes(alumniId);
-      console.log(isConnected)
       const url = `http://localhost:4000/api/v1/alumni/${isConnected ? "disconnect" : "connect"}`;
       
       await axios.post(url, { alumniId }, {
@@ -56,49 +72,50 @@ const Sidebar = () => {
     }
   };
 
-  //filter based on search input
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  //handle search input
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
-    setShowDropdown(value.length > 0); // Show dropdown if input is not empty
+    setShowDropdown(value.length > 0);
   };
-  
+
+  const handleSidebarClose = () => {
+    setIsSidebarOpen(false);
+  };
 
   return (
-    <div className="fixed left-0 top-[180px] w-80 h-full bg-gray-100 text-gray-800 shadow-lg p-4 transition-transform duration-600 overflow-y-auto">
+    <div 
+      ref={sidebarRef}
+      className={`fixed left-0 top-[180px] w-80 h-full bg-gray-100 text-gray-800 shadow-lg p-4 transition-transform duration-600 overflow-y-auto ${isSidebarOpen ? '' : 'transform -translate-x-full'}`}
+    >
+      {/* Rest of your sidebar content remains the same */}
       <h2 className="text-xl font-semibold mb-6 pb-2 px-4 border-b-2 border-gray-400">Dashboard</h2>
 
       {/* Search Bar */}
       <div className="relative">
-      <div className="w-full flex items-center gap-2 bg-white text-gray-800 h-10 px-4 rounded-full border border-gray-300 focus-within:ring-2">
-        <MdSearch className="text-gray-600 text-xl" />
-        <input 
-        type="text" 
-        placeholder="Search your peers here..." 
-        className="bg-transparent text-sm w-full focus:outline-none" 
-        value={searchTerm}
-        onChange={handleSearch}
+        <div className="w-full flex items-center gap-2 bg-white text-gray-800 h-10 px-4 rounded-full border border-gray-300 focus-within:ring-2">
+          <MdSearch className="text-gray-600 text-xl" />
+          <input 
+            type="text" 
+            placeholder="Search your peers here..." 
+            className="bg-transparent text-sm w-full focus:outline-none" 
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
 
-        />
-        {/* <p className="text-sm text-gray-500 mt-2">
-  Showing {filteredUsers.length} results for "{searchTerm}"
-</p> */}
-
-      </div>
-      {/*Dropdown Results */}
-      {showDropdown && (
+        {/* Dropdown Results */}
+        {showDropdown && (
           <ul className="absolute left-0 top-12 w-full bg-white border border-gray-300 shadow-lg rounded-md max-h-60 overflow-y-auto z-50">
             {filteredUsers.length > 0 ? (
               filteredUsers.map(user => (
                 <li 
                   key={user._id} 
                   className="flex items-center gap-3 p-2 hover:bg-gray-200 cursor-pointer"
-                  onClick={() => handleUserClick(user._id)}
+                  onClick={() => handleSidebarClose()} // Close sidebar on click
                 >
                   <img
                     src={user.profileImage || "https://i.pinimg.com/236x/eb/8f/aa/eb8faa016a6b2e559d6b99541e1375c1.jpg"}
@@ -118,16 +135,19 @@ const Sidebar = () => {
       {/* Navigation */}
       <ul className="mt-4">
         <li className="hover:bg-gray-300 p-2 rounded cursor-pointer">
-          <Link to="/class-of-2024" className="block w-full h-full">Class of 2024</Link>
+          <Link to="/class-of-2024" className="block w-full h-full" onClick={handleSidebarClose}>Class of 2024</Link>
         </li>
         <li className="hover:bg-gray-300 p-2 rounded cursor-pointer">
-          <Link to="/profile" className="block w-full h-full">My Profile</Link>
+          <Link to="/profile" className="block w-full h-full" onClick={handleSidebarClose}>My Profile</Link>
         </li>
         <li className="hover:bg-gray-300 p-2 rounded cursor-pointer">
-          <Link to="/events" className="block w-full h-full">Events</Link>
+          <Link to="/memories" className="block w-full h-full" onClick={handleSidebarClose}>Memories</Link>
         </li>
         <li className="hover:bg-gray-300 p-2 rounded cursor-pointer">
-          <Link to="/settings" className="block w-full h-full">Settings</Link>
+          <Link to="/help" className="block w-full h-full" onClick={handleSidebarClose}>Help & Support</Link>
+        </li>
+        <li className="hover:bg-gray-300 p-2 rounded cursor-pointer">
+          <Link to="/report" className="block w-full h-full" onClick={handleSidebarClose}>Report</Link>
         </li>
       </ul>
 

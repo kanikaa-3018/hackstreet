@@ -30,20 +30,22 @@ const Navbar = () => {
   return (
     <nav className="w-full flex flex-col gap-4 pt-4 sticky top-0 z-50 bg-white shadow-md">
       <div className="flex items-center justify-between px-12 w-full">
-        <div>
-          <h1 className="font-extrabold text-3xl heading">ALUMNI NEXUS</h1>
-          <p className="pl-8">a digital hub for</p>
-          <p className="pl-16">ALUMNI Networking...</p>
-        </div>
+        <Link to='/'>
+          <div>
+            <h1 className="font-extrabold text-3xl heading">ALUMNI NEXUS</h1>
+            <p className="pl-8">a digital hub for</p>
+            <p className="pl-16">ALUMNI Networking...</p>
+          </div>
+        </Link>
         <div>
           <img src={logo} alt="Logo" className="w-20 h-auto" />
         </div>
         <div className="flex gap-2 justify-center">
           <p>Let's Connect</p>
           <div className="flex justify-center items-center gap-2">
-            <FaInstagram />
-            <FaLinkedin />
-            <FaFacebook />
+            <Link to="https://www.instagram.com/iiitmgwaliorofficial/reels/" target="_blank"><FaInstagram /></Link>
+            <Link to="https://www.linkedin.com/school/abv-indian-institute-of-information-technology-and-management/posts/?feedView=all" target="_blank"><FaLinkedin /></Link>
+            <Link to="https://www.facebook.com/iiitm/" target="_blank"><FaFacebook /></Link>
           </div>
         </div>
       </div>
@@ -54,7 +56,6 @@ const Navbar = () => {
         </button>
         <Link to="/" className="hover:underline font-semibold">Home</Link>
         <Link to="/events" className="hover:underline font-semibold">Events</Link>
-        <Link to="/memories" className="hover:underline font-semibold">Memories</Link>
         <Link to="/updates" className="hover:underline font-semibold">Updates</Link>
         <Link to="/newsletter" className="hover:underline font-semibold">Newsletter</Link>
         <Link to="/community" className="hover:underline font-semibold">Community</Link>

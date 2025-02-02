@@ -1,10 +1,8 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"; // Added useLocation import
 import Footer from "./components/Footer";
 
 import PrivateRoute from "./components/PrivateRoute";
@@ -21,7 +19,19 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Chatbot from "./components/Chatbot";
 import ChatPage from "./pages/ChatPage";
-import MemoriesPage from "./pages/Memories";
+import HelpPage from "./components/Help";
+import ReportPage from "./components/Report";
+
+// ScrollToTop component to reset scroll position
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page when route changes
+  }, [pathname]); // Runs whenever the path changes
+
+  return null; // This component doesn't render anything
+};
 
 function App() {
   return (
@@ -44,18 +54,17 @@ function App() {
           }
         />
 
-        <Route path="/events" element={<Event/>}></Route>
-        <Route path="/newsletter" element={<NewsletterPage />}></Route>
-        <Route path="/updates" element={<UpdatesPage/>}></Route>
-        <Route path="/memories" element={<MemoriesPage/>}></Route>
-        <Route path="/community" element={<Community/>}></Route>
-
-        <Route path="/chat" element={<ChatPage />}></Route>
-
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/memories" element={<MemoriesPage />}></Route>
+        <Route path="/events" element={<Event />} />
+        <Route path="/newsletter" element={<NewsletterPage />} />
+        <Route path="/updates" element={<UpdatesPage />} />
+        <Route path="/memories" element={<MemoriesPage />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/help" element={<HelpPage/>}/>
+        <Route path="/report" element={<ReportPage/>}/>
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
-
+      
+      <ScrollToTop />
       <Footer />
     </div>
   );

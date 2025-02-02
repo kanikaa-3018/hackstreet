@@ -68,10 +68,21 @@ const Extra = () => {
             <div className="text-black text-4xl">{card.icon}</div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button className="bg-[#bbbbbb] text-[#000161] hover:text-white mt-4">
-              {card.buttonText}
-            </Button>
-          </CardFooter>
+  {card.title === "Your Profile" ? (
+    // If the card title is "Your Profile", make the button a link
+    <a href="/profile" target="_blank" rel="noopener noreferrer">
+      <Button className="bg-[#bbbbbb] text-[#000161] hover:text-white mt-4">
+        {card.buttonText}
+      </Button>
+    </a>
+  ) : (
+    // For other cards, keep the regular button functionality
+    <Button className="bg-[#bbbbbb] text-[#000161] hover:text-white mt-4">
+      {card.buttonText}
+    </Button>
+  )}
+</CardFooter>
+
         </Card>
       ))}
     </motion.div>
