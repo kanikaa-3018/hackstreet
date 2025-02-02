@@ -21,7 +21,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Chatbot from "./components/Chatbot";
 import ChatPage from "./pages/ChatPage";
-import MemoriesPage from "./pages/Memories";
+
 
 function App() {
   return (
