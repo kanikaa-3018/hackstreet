@@ -24,7 +24,6 @@ import ChatPage from "./pages/ChatPage";
 
 import ProfilePerson from "./pages/profile_person";
 
-import MemoriesPage from "./pages/Memories";
 
 
 
@@ -59,7 +58,7 @@ function App() {
 
 
        
-        <Route path="/profile/:id" element={<ProfilePerson/>}/>
+        <Route path="/profile/:userId" element={<ProfilePerson/>}/>
         {/* <Route path="/memories" element={<MemoriesPage />}></Route> */}
 
         <Route path="/profile" element={<Profile />} />

@@ -315,7 +315,7 @@ export const getConnectedAlumni = async (req, res) => {
 // In your alumni controller
 export const getAlumniById = async (req, res) => {
   try {
-    const userId = req.params.id; // Correct way to access userId
+    const userId = req.params.userId; 
     console.log("Received request for userId:", userId); // Debug log
 
     const alumni = await alumniModel.findById(userId);

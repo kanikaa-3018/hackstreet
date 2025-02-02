@@ -25,16 +25,15 @@ router.put("/update", auth, upload.single("profileImage"), editAlumniProfile);
 router.post("/connect", auth, connectAlumni); // Connect with another alumni
 router.post("/diconnect", auth, disconnectAlumni); // Connect with another alumni
 router.get("/connections", auth, getConnectedAlumni); // Get connected alumni
-
-
-
-
-
-
-
-
-// In your backend routes file
 router.get('/:userId', auth, getAlumniById);
+
+
+
+
+
+
+
+
 
 
 export default router;
