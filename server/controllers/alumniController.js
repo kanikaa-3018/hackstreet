@@ -2,6 +2,7 @@ import alumniModel from "../models/alumniModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import fs from 'fs';
+import path from "path";
 import {uploadToCloudinary,deleteFromCloudinary} from "../utils/cloudinary.js"
 
 export const signupController = async (req, res) => {
@@ -101,7 +102,7 @@ export const loginController = async (req, res) => {
 
     
     const token = jwt.sign({ id: alumni._id }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
+      expiresIn: "7d",
     });
 
     res.status(200).json({
@@ -190,49 +191,73 @@ export const getAllAlumnis = async (req, res) => {
 };
 
 
+
+
 export const editAlumniProfile = async (req, res) => {
   try {
-    // Find the alumni profile by ID
-    const alumni = await alumniModel
-      .findById(req.alumni.id)
-      .select("-password");
+    console.log("Request received to update profile:", req.body);
 
+    // Find the alumni profile by ID
+    const alumni = await alumniModel.findById(req.alumni.id).select("-password");
     if (!alumni) {
       return res.status(404).json({ msg: "Alumni profile not found" });
     }
 
     const { name, email, bio, position, currentLocation } = req.body;
-    let profileImage = alumni.profileImage;  
+    let profileImage = alumni.profileImage; // Keep existing image
 
-    
+    console.log("Existing profile image:", profileImage);
+    console.log("Uploaded file:", req.file);
+
+    // Handle profile image update
     if (req.file) {
-      
-      if (alumni.profileImage) {
-        const publicId = alumni.profileImage.split('/').pop().split('.')[0]; // Extract the public ID of the old image
-        await deleteFromCloudinary(publicId);  // Delete the old image from Cloudinary
+      try {
+        const filePath = req.file.path;
+        
+        // Check if the uploaded file exists before deleting
+        if (fs.existsSync(filePath)) {
+          console.log("File exists:", filePath);
+          
+          // Delete old image from Cloudinary (if exists)
+          if (alumni.profileImage) {
+            const publicId = alumni.profileImage.split("/").pop().split(".")[0];
+            await deleteFromCloudinary(publicId);
+          }
+
+          // Upload new image
+          const uploadedImage = await uploadToCloudinary(filePath);
+          profileImage = uploadedImage.secure_url || uploadedImage.url; // Ensure correct URL is used
+          
+          // Delete local file after successful upload
+          fs.unlinkSync(filePath);
+        } else {
+          console.log("File does not exist:", filePath);
+        }
+      } catch (err) {
+        console.error("Error handling image upload:", err);
+        return res.status(500).json({ msg: "Image upload failed" });
       }
-      const cloudinaryImageUrl = await uploadToCloudinary(req.file.path);
-      profileImage = cloudinaryImageUrl; 
-      fs.unlinkSync(req.file.path);
     }
 
-    
+    // Update alumni fields
     alumni.name = name || alumni.name;
     alumni.email = email || alumni.email;
     alumni.bio = bio || alumni.bio;
     alumni.position = position || alumni.position;
     alumni.currentLocation = currentLocation || alumni.currentLocation;
-    alumni.profileImage = profileImage || alumni.profileImage;  // Update profileImage if it changed
+    alumni.profileImage = profileImage;
 
-    // Save the updated alumni profile
+    // Save the updated profile
     await alumni.save();
-    res.status(200).json(alumni); 
+    res.status(200).json({ msg: "Profile updated successfully", alumni });
 
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server error");
+    console.error("Server error:", error);
+    res.status(500).json({ msg: "Server error" });
   }
 };
+
+
 
 
 
@@ -268,9 +293,9 @@ export const connectAlumni = async (req, res) => {
 export const disconnectAlumni = async (req, res) => {
   try {
     const { alumniId } = req.body; 
-    console.log(alumniId)// ID of the alumni to disconnect from
-    const loggedInAlumni = await alumniModel.findById(req.alumni.id);
+    console.log(alumniId);
 
+    const loggedInAlumni = await alumniModel.findById(req.alumni.id);
     if (!loggedInAlumni) {
       return res.status(404).json({ message: "Alumni not found" });
     }
@@ -279,36 +304,47 @@ export const disconnectAlumni = async (req, res) => {
       return res.status(400).json({ message: "Not connected with this alumni" });
     }
 
-    loggedInAlumni.connections = loggedInAlumni.connections.filter(id => id.toString() !== alumniId);
-    await loggedInAlumni.save();
+    await alumniModel.updateOne(
+      { _id: req.alumni.id },
+      { $pull: { connections: alumniId } }
+    );
 
-    // Remove loggedInAlumni from the otherAlumni's connections
-    const otherAlumni = await alumniModel.findById(alumniId);
-    if (otherAlumni) {
-      otherAlumni.connections = otherAlumni.connections.filter(id => id.toString() !== req.alumni.id);
-      await otherAlumni.save();
-    }
+    // Use $pull to remove loggedInAlumni from the otherAlumni's connections
+    await alumniModel.updateOne(
+      { _id: alumniId },
+      { $pull: { connections: req.alumni.id } }
+    );
 
-    res.status(200).json({ message: "Disconnected successfully", connections: loggedInAlumni.connections });
+    res.status(200).json({ message: "Disconnected successfully" });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
 
+
+
+
+
+
 export const getConnectedAlumni = async (req, res) => {
   try {
-    const loggedInAlumni = await alumniModel.findById(req.alumni.id).populate("connections", "name email profileImage year batch ");
+    
+    const loggedInAlumni = await alumniModel
+      .findById(req.alumni.id)
+      .populate("connections", "_id name email profileImage year batch");
 
     if (!loggedInAlumni) {
       return res.status(404).json({ message: "Alumni not found" });
     }
 
+    
     res.status(200).json({ connections: loggedInAlumni.connections });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
 
 
 

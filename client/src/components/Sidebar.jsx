@@ -11,6 +11,7 @@ const Sidebar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate=useNavigate();
 
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,45 +19,76 @@ const Sidebar = () => {
         const friendsRes = await axios.get("http://localhost:4000/api/v1/alumni/connections", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
-
+  
         if (allAlumniRes.data.success && Array.isArray(allAlumniRes.data.alumni)) {
           setUsers(allAlumniRes.data.alumni);
           console.log(users)
         }
-
+  
         if (friendsRes.data.connections) {
           setFriends(friendsRes.data.connections.map(friend => friend._id));
           console.log(friends)
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        setUsers([]);
-        setFriends([]);
+        
       }
     };
 
     fetchData();
-  }, []);
+  },[]);
 
-  const toggleConnection = async (alumniId) => {
+  const connectAlumni = async (alumniId) => {
     try {
-      const isConnected = friends.includes(alumniId);
-      console.log(isConnected)
-      const url = `http://localhost:4000/api/v1/alumni/${isConnected ? "disconnect" : "connect"}`;
-      
-      await axios.post(url, { alumniId }, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-
-      setFriends(prevFriends =>
-        isConnected ? prevFriends.filter(id => id !== alumniId) : [...prevFriends, alumniId]
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/alumni/connect",
+        { alumniId },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
+  
+      if (response.data.success) {
+        setFriends((prevFriends) => [...prevFriends, alumniId]); // Add to friends list
+      } else {
+        console.error("Failed to connect:", response.data.message);
+      }
     } catch (error) {
-      console.error("Error updating connection:", error);
+      console.error("Error connecting:", error);
     }
   };
+  
+  const disconnectAlumni = async (alumniId) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/alumni/disconnect",
+        { alumniId },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+  
+      if (response.data.success) {
+        setFriends((prevFriends) => prevFriends.filter((id) => id !== alumniId)); // Remove from friends list
+      } else {
+        console.error("Failed to disconnect:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error disconnecting:", error);
+    }
+  };
+  
+  // Use the functions accordingly
+  const toggleConnection = (alumniId) => {
+    if (friends.includes(alumniId)) {
+      disconnectAlumni(alumniId);
+    } else {
+      connectAlumni(alumniId);
+    }
+  };
+  
 
-  //filter based on search input
+  
   const filteredUsers = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -65,13 +97,12 @@ const Sidebar = () => {
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
-    setShowDropdown(value.length > 0); // Show dropdown if input is not empty
+    setShowDropdown(value.length > 0); 
   };
 
-  //handle profile click
-// In your search/dashboard component where you have the search results
+  
 const handleUserClick = (userId) => {
-  console.log("Clicked user ID:", userId); // Verify userId exists
+  
   if (!userId) {
     console.error("No userId provided");
     return;

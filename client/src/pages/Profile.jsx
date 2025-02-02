@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import { FaLinkedin, FaInstagram, FaCalendarAlt,FaBriefcase } from "react-icons/fa";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../context/UserContext.jsx";
 import axios from "axios";
 
 const Profile = () => {
@@ -9,7 +9,7 @@ const Profile = () => {
   const { user, loading } = useUser();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  console.log(user);
+  console.log("user",user);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,7 +24,7 @@ const Profile = () => {
     profileImage:null,
   });
 
-  // Update formData when user data is available
+  
   useEffect(() => {
     if (user?.alumni) {
       setFormData({
@@ -40,7 +40,7 @@ const Profile = () => {
         instagram: user.alumni.instagram || "",
         profileImage: user.alumni.profileImage,
       });
-      // Set the preview image as the current profile image
+      
       setPreviewImage(user.alumni.profileImage);
     }
   }, [user]);
@@ -66,7 +66,7 @@ const Profile = () => {
     const file = e.target.files[0];
     setSelectedFile(file);
 
-    // Display the selected image as a preview
+    
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreviewImage(reader.result);

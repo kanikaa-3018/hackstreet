@@ -14,7 +14,7 @@ const alumniSchema = new mongoose.Schema(
     bio: { type: String },
     linkedin: { type: String, default: "", required: false },
     instagram: { type: String, default: "", required: false },
-    profileImage: { type: String, default: "" , },
+    profileImage: { type: String, default: "" },
     connections: [{ type: mongoose.Schema.Types.ObjectId, ref: "Alumni" }], 
   },
   { timestamps: true }

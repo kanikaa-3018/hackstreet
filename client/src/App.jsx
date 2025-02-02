@@ -23,6 +23,7 @@ import Chatbot from "./components/Chatbot";
 import ChatPage from "./pages/ChatPage";
 
 import ProfilePerson from "./pages/profile_person";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -61,12 +62,13 @@ function App() {
         <Route path="/profile/:userId" element={<ProfilePerson/>}/>
         {/* <Route path="/memories" element={<MemoriesPage />}></Route> */}
 
-        <Route path="/profile" element={<Profile />} />
+        
         <Route path="/memories" element={<MemoriesPage />}></Route>
 
       </Routes>
 
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
