@@ -3,6 +3,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../../src/index.css';
 import convo16 from '../../public/convo16.jpg';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";  // Import motion
 
 // Create a custom icon
 const createCustomIcon = (color) => {
@@ -77,42 +79,48 @@ const Community = () => {
         mapInstanceRef.current = null;
       }
     };
-  }, []);
+  }, []); // Empty dependency array ensures it runs only once when the component mounts
 
   return (
     <div className="community-container">
-      {/* Introduction Section */}
-      <section className="community-introduction">
+      {/* Introduction Section with Animation */}
+      <motion.section 
+        className="community-introduction"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <h2 className='font-semibold'>Welcome to Our Community</h2>
         <p>
           Atal Bihari Vajpayee Indian Institute of Information Technology and Management (ABV-IIITM) is a prestigious institute located in Gwalior, Madhya Pradesh. It is dedicated to imparting quality education in the fields of Information Technology, Management, and related disciplines.
         </p>
-      </section>
+      </motion.section>
 
-      {/* Header Section with Background Image */}
-
-      
-
-      <header 
+      {/* Header Section with Background Image and Animation */}
+      <motion.header 
         className="community-header" 
         style={{ 
           backgroundImage: `url(${convo16})`, 
           backgroundSize: 'cover', 
           backgroundPosition: 'center' 
-
         }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="community-overlay position-relative">
           <h1 className='font-semibold'>ABV-IIITM Alumni Association</h1>
           <p>
             The ABV-IIITM Alumni Association is a vibrant network of graduates committed to fostering long-term relationships with the institute and supporting its growth. With alumni spread across the globe, the association plays a pivotal role in shaping the institute’s future.
           </p>
-          <button className="community-btn px-16 py-3">Explore Now</button>
+          <Link to='https://iiitm.ac.in/index.php/en/component/content/category/97-admissions?Itemid=437'>
+            <button className="community-btn px-16 py-3">Explore Now</button>
+          </Link>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Map Container */}
-      <div
+      {/* Map Container with Animation */}
+      <motion.div
         ref={mapRef}
         className="h-[600px] mx-auto my-16 relative"
         style={{
@@ -120,6 +128,9 @@ const Community = () => {
           width: '80%',
           zIndex: 0,
         }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
       />
     </div>
   );

@@ -54,9 +54,10 @@ const Navbar = () => {
         </button>
         <Link to="/" className="hover:underline font-semibold">Home</Link>
         <Link to="/events" className="hover:underline font-semibold">Events</Link>
-        <Link to="/about" className="hover:underline font-semibold">About</Link>
+        <Link to="/memories" className="hover:underline font-semibold">Memories</Link>
         <Link to="/updates" className="hover:underline font-semibold">Updates</Link>
         <Link to="/newsletter" className="hover:underline font-semibold">Newsletter</Link>
+        <Link to="/community" className="hover:underline font-semibold">Community</Link>
 
         {/* Login / Logout Section */}
         <div className=" flex items-center gap-2 ">

@@ -298,7 +298,7 @@ export const disconnectAlumni = async (req, res) => {
 
 export const getConnectedAlumni = async (req, res) => {
   try {
-    const loggedInAlumni = await alumniModel.findById(req.alumni.id).populate("connections", "name email profileImage");
+    const loggedInAlumni = await alumniModel.findById(req.alumni.id).populate("connections", "name email profileImage year batch ");
 
     if (!loggedInAlumni) {
       return res.status(404).json({ message: "Alumni not found" });

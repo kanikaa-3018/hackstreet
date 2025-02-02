@@ -15,13 +15,16 @@ import UpdatesPage from "./pages/Update";
 
 import Profile from "./pages/Profile";
 import Community from "./pages/Community";
-// import MemoriesPage from "./pages/Memories";
+import MemoriesPage from "./pages/Memories";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Chatbot from "./components/Chatbot";
 import ChatPage from "./pages/ChatPage";
 import ProfilePerson from "./pages/profile_person";
+
+import MemoriesPage from "./pages/Memories";
+
 
 function App() {
   return (
@@ -44,17 +47,22 @@ function App() {
           }
         />
 
-        <Route path="/events" element={<Event />}></Route>
+        <Route path="/events" element={<Event/>}></Route>
         <Route path="/newsletter" element={<NewsletterPage />}></Route>
-        <Route path="/updates" element={<UpdatesPage />}></Route>
-
-        <Route path="/community" element={<Community />}></Route>
+        <Route path="/updates" element={<UpdatesPage/>}></Route>
+        <Route path="/memories" element={<MemoriesPage/>}></Route>
+        <Route path="/community" element={<Community/>}></Route>
 
         <Route path="/chat" element={<ChatPage />}></Route>
+
 
        
         <Route path="/profile/:id" element={<ProfilePerson/>}/>
         {/* <Route path="/memories" element={<MemoriesPage />}></Route> */}
+
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/memories" element={<MemoriesPage />}></Route>
+
       </Routes>
 
       <Footer />
