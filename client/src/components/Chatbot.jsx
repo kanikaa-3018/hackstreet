@@ -1655,4 +1655,651 @@ const intents = {
                     "transportation",
                     "Is there a transport facility at ABV-IIIT?",
                     "How do students commute to campus?",
-                    "Ar
+                    "Are there buses to ABV-IIIT?",
+                    "Can I use public transport to reach ABV-IIIT?"
+                  ],
+                  "responses": [
+                    "ABV-IIIT provides transport services to help students commute to and from the campus. Additionally, the campus is well-connected by public transportation."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "parking",
+                  "patterns": [
+                    "parking",
+                    "Is parking available at ABV-IIIT?",
+                    "Where can I park my vehicle?",
+                    "Is there parking for bikes and cars?",
+                    "How is the parking system at ABV-IIIT?"
+                  ],
+                  "responses": [
+                    "ABV-IIIT provides designated parking spaces for both cars and bikes. The parking facility is well-organized and secure for all vehicles."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "cafeteria",
+                  "patterns": [
+                    "cafeteria",
+                    "Where is the cafeteria located?",
+                    "What food does the cafeteria serve?",
+                    "Does the cafeteria offer vegetarian food?",
+                    "Is the cafeteria open 24/7?"
+                  ],
+                  "responses": [
+                    "ABV-IIIT’s cafeteria serves a variety of food options, including snacks, beverages, and meals. It provides vegetarian and non-vegetarian options and is open throughout the day."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "gym",
+                  "patterns": [
+                    "gym",
+                    "Is there a gym at ABV-IIIT?",
+                    "What are the gym facilities?",
+                    "Can I access the gym as a student?",
+                    "Where is the gym located?"
+                  ],
+                  "responses": [
+                    "ABV-IIIT offers a well-equipped gym for students, with modern fitness equipment. Students can access the gym during its operational hours for physical fitness."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "laundry",
+                  "patterns": [
+                    "laundry",
+                    "Is there a laundry facility at ABV-IIIT?",
+                    "Where can I do my laundry?",
+                    "Does the hostel have a laundry service?",
+                    "Is there a self-service laundry at ABV-IIIT?"
+                  ],
+                  "responses": [
+                    "Yes, ABV-IIIT provides laundry facilities in the hostels, with both self-service and outsourced options available for students."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "recreational_facilities",
+                  "patterns": [
+                    "recreational_facilities",
+                    "What recreational activities are available at ABV-IIIT?",
+                    "Is there a recreational area on campus?",
+                    "Can students relax on campus?",
+                    "What does ABV-IIIT offer for relaxation?"
+                  ],
+                  "responses": [
+                    "ABV-IIIT offers several recreational activities for students, including indoor games, recreational lounges, and relaxation areas to unwind after academic activities."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "green_spaces",
+                  "patterns": [
+                    "Are there green spaces on campus?",
+                    "Where can I relax on the campus?",
+                    "Is there a park on ABV-IIIT campus?",
+                    "What green spaces are available at ABV-IIIT?"
+                  ],
+                  "responses": [
+                    "ABV-IIIT has beautifully maintained green spaces and open areas where students can relax, study, or enjoy outdoor activities."
+                  ],
+                  "context_set": ""
+                },
+                {
+                  "tag": "water_supply",
+                  "patterns": [
+                    "water supply",
+                    "Is there a water purifier on campus?",
+                    "Where can I get drinking water?",
+                    "Does ABV-IIIT provide purified water?",
+                    "Are water coolers available in all buildings?"
+                  ],
+                  "responses": [
+                    "Yes, ABV-IIIT ensures purified drinking water facilities are available across all campus buildings, including classrooms, hostels, and other common areas."
+                  ],
+                  "context_set": ""
+                },
+              
+                  {
+                    "tag": "aurora",
+                    "patterns": [
+                      "What is Aurora?",
+                      "When is Aurora held?",
+                      "Aurora fest schedule?",
+                      "How can I participate in Aurora?",
+                      "What activities happen during Aurora?",
+                      "Who organizes Aurora?",
+                      "Is Aurora a cultural fest?",
+                      "What events are part of Aurora?",
+                      "Where is Aurora held?",
+                      "Is Aurora open for other colleges?"
+                    ],
+                    "responses": [
+                      "Aurora is Central India's largest cultural fest held annually at our college, featuring a variety of cultural events, performances, and competitions."
+                    ]
+                  },
+                  {
+                    "tag": "infotsav",
+                    "patterns": [
+                      "What is Infotsav?",
+                      "When is Infotsav held?",
+                      "Infotsav event details?",
+                      "How do I participate in Infotsav?",
+                      "What events take place during Infotsav?",
+                      "Is Infotsav a technical fest?",
+                      "Who organizes Infotsav?",
+                      "Is Infotsav open to all colleges?",
+                      "Where is Infotsav held?",
+                      "What competitions are there in Infotsav?"
+                    ],
+                    "responses": [
+                      "Infotsav is the technical fest of our college, featuring workshops, coding competitions, and other technical events organized by the college."
+                    ]
+                  },
+                  {
+                    "tag": "hacsagon",
+                    "patterns": [
+                      "What is Hacsagon?",
+                      "When is Hacsagon held?",
+                      "What is Hacsagon hackathon?",
+                      "How can I participate in Hacsagon?",
+                      "Who organizes Hacsagon?",
+                      "Is Hacsagon conducted by IEEE?",
+                      "What type of hackathon is Hacsagon?",
+                      "Where is Hacsagon held?",
+                      "Is there a prize for Hacsagon winners?",
+                      "Who can participate in Hacsagon?"
+                    ],
+                    "responses": [
+                      "Hacsagon is a hackathon conducted by IEEE at our college, bringing together innovative minds to work on various tech-based challenges."
+                    ]
+                  },
+                  {
+                    "tag": "sports_fest",
+                    "patterns": [
+                      "sports fest",
+                      "What is Twarana?",
+                      "When is Twarana held?",
+                      "What sports are played in Twarana?",
+                      "How can I participate in Twarana?",
+                      "What is Urja?",
+                      "Is Urja an intra-sport event?",
+                      "Where are Twarana and Urja held?",
+                      "How can I register for Twarana?",
+                      "What are the categories in Twarana sports?",
+                      "Is there any prize for Twarana winners?"
+                    ],
+                    "responses": [
+                      "Twarana is our college's annual sports fest, featuring a variety of sports, while Urja is the intra-sport event focused on friendly competitions within the institute."
+                    ]
+                  },
+                  {
+                    "tag": "hackathons",
+                    "patterns": [
+                      "hackathons",
+                      "What hackathons are organized by the college?",
+                      "When do hackathons take place in college?",
+                      "Can I participate in hackathons at the college?",
+                      "How can I register for a hackathon?",
+                      "What types of hackathons are held here?",
+                      "Who organizes hackathons in the college?",
+                      "What is the theme of the current hackathon?",
+                      "Are there prizes for hackathon winners?",
+                      "Do we need a team to participate in a hackathon?",
+                      "Is there a limit to the number of hackathons one can participate in?"
+                    ],
+                    "responses": [
+                      "Our college organizes various hackathons throughout the year, including Hacsagon, and they are open to students across multiple domains."
+                    ]
+                  },
+                  {
+                    "tag": "club_events",
+                    "patterns": [
+                      "What events are organized by the college clubs?",
+                      "How can I participate in club events?",
+                      "Which clubs organize events at the college?",
+                      "What is the schedule for club events?",
+                      "How do I register for a club event?",
+                      "Can I start a new club event?",
+                      "Which clubs have the most events?",
+                      "What kind of events do tech clubs organize?",
+                      "Are there any club events related to cultural activities?",
+                      "How often are club events held?"
+                    ],
+                    "responses": [
+                      "Club events are organized throughout the year by various student clubs like E-Cell, Rotaract, Dance Club, etc., covering a wide range of activities from cultural to technical."
+                    ]
+                  },
+                  {
+                    "tag": "event_registration",
+                    "patterns": [
+                      "How do I register for events at the college?",
+                      "Is there an online registration for fests?",
+                      "Where can I register for upcoming events?",
+                      "Do I need to pay for event registration?",
+                      "What is the registration process for Aurora?",
+                      "How do I sign up for a hackathon?",
+                      "Are event registrations open for all colleges?",
+                      "Do I need to create an account to register?",
+                      "Can I register for multiple events?",
+                      "Is there a deadline for event registration?"
+                    ],
+                    "responses": [
+                      "You can register for events online through the event's official website or registration portal, and some events may require fees."
+                    ]
+                  },
+                  {
+                    "tag": "festival_information",
+                    "patterns": [
+                      "Can you give me details about college festivals?",
+                      "What festivals do we have in the college?",
+                      "Are there any cultural festivals?",
+                      "How many technical festivals are organized?",
+                      "Can I participate in all college festivals?",
+                      "When is the next college festival?",
+                      "What is the duration of each fest?",
+                      "How many fests are held in a year?",
+                      "Do different fests happen at the same time?",
+                      "What are the upcoming events in college?"
+                    ],
+                    "responses": [
+                      "We organize several festivals each year, including cultural, technical, and sports fests like Aurora, Infotsav, and Twarana."
+                    ]
+                  },
+                  {
+                    "tag": "student_participation",
+                    "patterns": [
+                      "How can I be more involved in college events?",
+                      "What is the student participation process?",
+                      "Can I volunteer for college fests?",
+                      "How do I join the organizing committee?",
+                      "What roles can students take in fests?",
+                      "Do I need to be in a club to participate in events?",
+                      "How can I contribute to college events?",
+                      "Can students help organize hackathons?",
+                      "Is there any student leadership in events?",
+                      "How do I get selected as a volunteer for fests?"
+                    ],
+                    "responses": [
+                      "You can get involved in college events by volunteering, joining the organizing committees, or participating in various roles during the festivals and activities."
+                    ]
+                  },
+                  {
+                    "tag": "event_schedule",
+                    "patterns": [
+                      "What is the schedule for Aurora?",
+                      "When does Infotsav start?",
+                      "What are the dates for Hacsagon?",
+                      "When will the next sports fest take place?",
+                      "Is there an event calendar?",
+                      "When is the next hackathon?",
+                      "What is the timetable for the upcoming events?",
+                      "Are there weekly events in college?",
+                      "Is there a schedule for cultural fests?",
+                      "How can I stay updated with event schedules?"
+                    ],
+                    "responses": [
+                      "The event schedule is updated regularly on the college website or event portal, and details are also shared through social media and notices."
+                    ]
+                  },
+       
+  
+                    {
+                      "tag": "event_info",
+                      "patterns": [
+                        "What kind of events are organized during Aurora?",
+                        "Is there a fashion show in Aurora?",
+                        "Are there any live performances during Infotsav?",
+                        "What is the theme of the next hackathon?",
+                        "Are there workshops in Twarana?",
+                        "Will there be any coding competitions in Hacsagon?",
+                        "Can I participate in cultural events if I'm from a technical branch?",
+                        "Are there any special guests for the college fests?",
+                        "Can I register for multiple events in the same fest?",
+                        "What is the criteria for participating in Hacsagon?"
+                      ],
+                      "responses": [
+                        "Aurora features a wide range of events, including fashion shows, dance performances, musical events, and more. Infotsav offers workshops, coding competitions, and technical challenges, while hackathons like Hacsagon focus on solving real-world tech problems."
+                      ]
+                    },
+                    {
+                      "tag": "hackathon_details",
+                      "patterns": [
+                        "What is the format of Hacsagon?",
+                        "Is there any registration fee for Hacsagon?",
+                        "What are the challenges for Hacsagon?",
+                        "How do teams form for hackathons?",
+                        "What are the prizes for Hacsagon winners?",
+                        "Who judges the hackathons?",
+                        "Can alumni participate in the hackathon?",
+                        "What technologies can we use in Hacsagon?",
+                        "How long does Hacsagon last?",
+                        "Do hackathons have mentoring sessions?"
+                      ],
+                      "responses": [
+                        "Hacsagon is a 24-hour hackathon organized by IEEE, with various coding challenges to solve. There are prizes for top winners, and the hackathon typically covers technologies like AI, ML, and web development."
+                      ]
+                    },
+                    {
+                      "tag": "fest_participation",
+                      "patterns": [
+                        "fest participation",
+                        "Can I participate in a fest if I’m a first-year student?",
+                        "How do I become a part of the organizing team for a fest?",
+                        "Can students from all years participate in fest events?",
+                        "Do I need to be in a specific club to participate in events?",
+                        "How early can we register for events?",
+                        "Are there auditions for the cultural events?",
+                        "Is participation in the fest mandatory?",
+                        "Can I take part in both cultural and technical events?",
+                        "What is the best way to prepare for fest competitions?",
+                        "Can non-students participate in the events?"
+                      ],
+                      "responses": [
+                        "Yes, all students can participate in fests, including first-year students. To become part of the organizing team, you can volunteer or contact the specific club or department hosting the event."
+                      ]
+                    },
+                    {
+                      "tag": "faculty_involvement",
+                      "patterns": [
+                        "Do professors participate in college fests?",
+                        "Are there any workshops or talks by professors during events?",
+                        "Can I approach faculty for help with fest preparation?",
+                        "Are faculty members judges for competitions?",
+                        "Do professors supervise hackathons?",
+                        "How involved are faculty in the organization of college fests?",
+                        "Do professors attend events during Aurora?",
+                        "Are faculty advisors assigned to student clubs?",
+                        "Can I get academic credit for organizing or volunteering in fests?",
+                        "Do professors support student-led initiatives for events?"
+                      ],
+                      "responses": [
+                        "Yes, faculty members are actively involved in the organization of fests, either as mentors, judges, or guest speakers for workshops and talks."
+                      ]
+                    },
+                    {
+                      "tag": "event_teams",
+                      "patterns": [
+                        "event teams",
+                        "How do I become a team leader for an event?",
+                        "Can I create my own event team for fests?",
+                        "What are the responsibilities of an event coordinator?",
+                        "How are the teams selected for fest events?",
+                        "Can I join a team for an event even if I have no experience?",
+                        "Are there any positions for non-technical students in the fest?",
+                        "How do I know what teams need more members?",
+                        "Is there a team for sports events in Twarana?",
+                        "What roles do volunteers play during a fest?",
+                        "How can I apply to be part of a fest team?"
+                      ],
+                      "responses": [
+                        "To become a team leader, you can contact the event organizers or faculty advisors. Teams are formed based on the roles required for each event, and students with varying skill sets are encouraged to join."
+                      ]
+                    },
+                    {
+                      "tag": "sponsorship_info",
+                      "patterns": [
+                        "sponsorship",
+                        "How can I sponsor a fest?",
+                        "What companies sponsor college events?",
+                        "How do companies get involved in sponsoring fests?",
+                        "What benefits do sponsors get from college events?",
+                        "Is there a sponsorship team for events?",
+                        "Can I approach companies for sponsorship for my club's event?",
+                        "How do I become a sponsor for Hacsagon?",
+                        "What are the sponsorship packages for college fests?",
+                        "Can alumni companies sponsor college events?",
+                        "How much do sponsors contribute to the fest?"
+                      ],
+                      "responses": [
+                        "Companies can get involved in sponsoring events by contacting the sponsorship team. Sponsors typically get branding opportunities, access to student talent, and can support events that align with their brand values."
+                      ]
+                    },
+                    {
+                      "tag": "fest_awards",
+                      "patterns": [
+                        "fest_awards",
+                        "What are the prizes for the winning teams?",
+                        "Do fests offer certificates for participation?",
+                        "Are there cash prizes for winners in the hackathon?",
+                        "What is the award for winning a cultural competition?",
+                        "Do teams get a trophy or certificate in hackathons?",
+                        "Are there any travel opportunities for fest winners?",
+                        "How are the awards distributed?",
+                        "Do I get recognition for volunteering in fests?",
+                        "Is there a winner's ceremony after each event?",
+                        "Are there any scholarships or internships as prizes?"
+                      ],
+                      "responses": [
+                        "Winners of various events, including hackathons and cultural competitions, receive prizes such as cash awards, certificates, trophies, and sometimes internships or sponsorships from industry partners."
+                      ]
+                    },
+                    {
+                      "tag": "event_volunteers",
+                      "patterns": [
+                        "volunteers",
+                        "How do I become a volunteer for college events?",
+                        "What is the role of a volunteer during a fest?",
+                        "Are there any benefits to volunteering in fests?",
+                        "Can I get a certificate for volunteering?",
+                        "Is volunteering during college fests mandatory?",
+                        "How many hours do volunteers work during fests?",
+                        "Do volunteers get food or refreshments during fests?",
+                        "How do I apply to be a volunteer for Aurora?",
+                        "Can volunteers participate in the events too?",
+                        "Can volunteers work behind the scenes during Hacsagon?"
+                      ],
+                      "responses": [
+                        "Volunteers assist with the smooth functioning of events and are responsible for tasks like registration, managing crowds, and assisting participants. You can apply to be a volunteer through the college event portal."
+                      ]
+                    },
+                    {
+                      "tag": "event_coverage",
+                      "patterns": [
+                        "event_coverage",
+                        "Will the events be covered in the media?",
+                        "Is there any live streaming of college events?",
+                        "Can I watch past events online?",
+                        "Where can I find pictures and videos of college events?",
+                        "Are there social media pages for event coverage?",
+                        "Can I get press passes for fests?",
+                        "Will there be media coverage for Twarana?",
+                        "Do alumni get access to event recordings?",
+                        "How can I access event photos after the fest?",
+                        "Are there any blogs about past college events?"
+                      ],
+                      "responses": [
+                        "Yes, events are often covered on social media, and there may be live streaming or recordings available after the fest. You can follow the college's official pages for updates and coverage."
+                      ]
+                    }
+                                     
+                         
+          
+  ],
+};
+
+const findResponse = (message) => {
+  const userMessage = message.toLowerCase().trim();
+  for (const intent of intents.intents) {
+    if (intent.patterns.some((pattern) => userMessage.includes(pattern))) {
+      const randomIndex = Math.floor(Math.random() * intent.responses.length);
+      return intent.responses[randomIndex];
+    }
+  }
+  return "I'm sorry, executing code is not possible. I can assist with questions about admissions, courses, facilities, or placements.";
+};
+
+const ChatbotCombined = () => {
+  const [femaleVoice, setFemaleVoice] = useState(null);
+
+  useEffect(() => {
+
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+ 
+        const selectedVoice =
+          voices.find((voice) =>
+            voice.name.toLowerCase().includes("samantha")
+          ) ||
+          voices.find((voice) => voice.name.toLowerCase().includes("female")) ||
+          voices[0];
+        setFemaleVoice(selectedVoice);
+      }
+    };
+
+    loadVoices();
+
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
+
+  const steps = [
+
+    {
+      id: "welcome",
+      message:
+        "Hello! Welcome to the College Assistant. Would you like to introduce yourself or ask a question?",
+      trigger: "choice",
+    },
+    {
+      id: "choice",
+      options: [
+        { value: "introduce", label: "Introduce Myself", trigger: "askName" },
+        { value: "ask", label: "Ask a Question", trigger: "userQuery" },
+      ],
+    },
+
+    {
+      id: "askName",
+      message: "What is your name?",
+      trigger: "getName",
+    },
+    {
+      id: "getName",
+      user: true,
+      trigger: "greetUser",
+    },
+    {
+      id: "greetUser",
+      message:
+        "Hi {previousValue}, nice to meet you! How can I help you today?",
+      trigger: "serviceChoice",
+    },
+   
+    {
+      id: "serviceChoice",
+      options: [
+        {
+          value: "services",
+          label: "Inquire About Services",
+          trigger: "intentOptions",
+        },
+        { value: "ask", label: "Type a Query", trigger: "userQuery" },
+      ],
+    },
+
+    {
+      id: "intentOptions",
+      message: "Please select an option:",
+      trigger: "intentSelection",
+    },
+    {
+      id: "intentSelection",
+      options: [
+        { value: "admissions", label: "Admissions", trigger: "admissions" },
+        { value: "courses", label: "Courses", trigger: "courses" },
+        { value: "placements", label: "Placements", trigger: "placements" },
+      ],
+    },
+    {
+      id: "admissions",
+      message:
+        "For admissions, please visit our online portal and check the admission requirements. Do you need anything else?",
+      trigger: "anythingElse",
+    },
+    {
+      id: "courses",
+      message:
+        "We offer a variety of courses across multiple disciplines. Check our website for a detailed course catalog. Do you need anything else?",
+      trigger: "anythingElse",
+    },
+    {
+      id: "placements",
+      message:
+        "Our placement cell provides excellent support, and we have tie-ups with top companies. Do you need any further assistance?",
+      trigger: "anythingElse",
+    },
+
+    {
+      id: "userQuery",
+      message: "Please say or write the query:",
+      trigger: "getUserQuery",
+    },
+    {
+      id: "getUserQuery",
+      user: true,
+      trigger: "showResponse",
+    },
+    {
+      id: "showResponse",
+      message: (props) => findResponse(props.steps.getUserQuery.value),
+      trigger: "anythingElse",
+    },
+
+    {
+      id: "anythingElse",
+      options: [
+        { value: "yes", label: "Yes", trigger: "serviceChoice" },
+        { value: "no", label: "No, thanks!", trigger: "endMessage" },
+      ],
+    },
+    {
+      id: "endMessage",
+      message: "Alright! Have a great day!",
+      end: true,
+    },
+  ];
+  const [isVoiceEnabled, setIsVoiceEnabled] = useState(false);
+  const enableVoice = () => {
+    setIsVoiceEnabled(true);
+  };
+  
+  // Function to disable voice
+  const disableVoice = () => {
+    setIsVoiceEnabled(false);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+     
+      <ChatBot
+        steps={steps}
+        floating={true}
+        headerTitle="College Assistant"
+        recognitionEnable={true} 
+        speechSynthesis={{
+          
+
+          enable: true,
+          lang: "en",
+          voice: femaleVoice,
+        }} 
+        botDelay={1000}
+        userDelay={1000}
+        customStyle={{
+          botMessageBox: { backgroundColor: theme.botBubbleColor },
+          chatButton: { backgroundColor: theme.headerBgColor },
+        }}
+
+        Style={{
+          voice: { backgroundColor: theme.botBubbleColor },
+          
+        }}
+
+      />
+    </ThemeProvider>
+  );
+};
+
+export default ChatbotCombined;
