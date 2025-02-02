@@ -23,7 +23,7 @@ import HelpPage from "./components/Help";
 import ReportPage from "./components/Report";
 
 
-import ProfilePerson from "./pages/ProfilePerson";
+import ProfilePerson from "./pages/profile_person"
 import { ToastContainer, toast } from 'react-toastify';
 
 const ScrollToTop = () => {
