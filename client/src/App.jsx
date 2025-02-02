@@ -81,6 +81,8 @@ function App() {
 
         
         <Route path="/memories" element={<MemoriesPage />}></Route>
+        <Route path="/report" element={<ReportPage />}></Route>
+        <Route path="/help" element={<HelpPage />}></Route>
 
 
       </Routes>
