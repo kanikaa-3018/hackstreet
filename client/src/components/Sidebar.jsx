@@ -13,7 +13,7 @@ const Sidebar = () => {
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
 
-  // Click outside detection
+  // Click outside detection to close sidebar
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -21,15 +21,14 @@ const Sidebar = () => {
       }
     };
 
-    // Add event listener
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Cleanup
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
+  // Fetch users and friends data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,6 +54,7 @@ const Sidebar = () => {
     fetchData();
   }, []);
 
+  // Toggle connection between users
   const toggleConnection = async (alumniId) => {
     try {
       const isConnected = friends.includes(alumniId);
@@ -86,12 +86,20 @@ const Sidebar = () => {
     setIsSidebarOpen(false);
   };
 
+  const handleUserClick = (userId) => {
+    console.log("Clicked user ID:", userId); 
+    if (!userId) {
+      console.error("No userId provided");
+      return;
+    }
+    navigate(`/profile/${userId}`);
+  };
+
   return (
     <div 
       ref={sidebarRef}
       className={`fixed left-0 top-[180px] w-80 h-full bg-gray-100 text-gray-800 shadow-lg p-4 transition-transform duration-600 overflow-y-auto ${isSidebarOpen ? '' : 'transform -translate-x-full'}`}
     >
-      {/* Rest of your sidebar content remains the same */}
       <h2 className="text-xl font-semibold mb-6 pb-2 px-4 border-b-2 border-gray-400">Dashboard</h2>
 
       {/* Search Bar */}
@@ -115,7 +123,10 @@ const Sidebar = () => {
                 <li 
                   key={user._id} 
                   className="flex items-center gap-3 p-2 hover:bg-gray-200 cursor-pointer"
-                  onClick={() => handleSidebarClose()} // Close sidebar on click
+                  onClick={() => {
+                    handleUserClick(user._id);
+                    setShowDropdown(false); // Close dropdown on click
+                  }}
                 >
                   <img
                     src={user.profileImage || "https://i.pinimg.com/236x/eb/8f/aa/eb8faa016a6b2e559d6b99541e1375c1.jpg"}

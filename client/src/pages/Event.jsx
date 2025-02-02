@@ -14,12 +14,12 @@ import convo14 from "../../public/convo14.jpg";
 import convo15 from "../../public/convo15.jpg";
 import { motion } from "framer-motion";
 
-import { FaMapMarkerAlt, FaClock, FaCalendarAlt } from "react-icons/fa"; // Add the icons
+import { FaMapMarkerAlt, FaClock, FaCalendarAlt } from "react-icons/fa";
 
 export default function EventPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [eventDetails, setEventDetails] = useState(null); // To store the event details for modal
+  const [eventDetails, setEventDetails] = useState(null);
 
   const events = [
     {
@@ -255,7 +255,7 @@ export default function EventPage() {
   };
 
   const handleEventClick = (event) => {
-    setEventDetails(event); // Set event details in state when Learn More is clicked
+    setEventDetails(event); 
     setIsModalOpen(true);
   };
 
@@ -379,7 +379,7 @@ export default function EventPage() {
               <img
                 src={
                   eventDetails.image || "https://via.placeholder.com/500x300"
-                } // Use actual image URL or placeholder
+                } 
                 alt="Event"
                 className="w-full h-56 object-cover"
               />
@@ -443,7 +443,7 @@ export default function EventPage() {
                         src={
                           speaker.imageUrl ||
                           "https://i.pinimg.com/236x/5d/0c/50/5d0c50f79be27f5120c5e5f3158ce52f.jpg"
-                        } // Use speaker image URL or placeholder
+                        }
                         alt={speaker.name}
                         className="w-20 h-20 rounded-full object-cover border-2 border-gray-300"
                       />

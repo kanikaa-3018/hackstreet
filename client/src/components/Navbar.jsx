@@ -50,8 +50,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="bg-[#00016A] text-white p-4 flex gap-8 w-full items-center px-16">
-        <button className="-ml-8" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+{/*nav */}
+      <div className="bg-[#00016A] text-white p-4 flex items-center px-8 justify-between w-full">
+      
+      <div className="flex items-center gap-5">
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           <GiHamburgerMenu />
         </button>
         <Link to="/" className="hover:underline font-semibold">Home</Link>
@@ -59,38 +62,34 @@ const Navbar = () => {
         <Link to="/updates" className="hover:underline font-semibold">Updates</Link>
         <Link to="/newsletter" className="hover:underline font-semibold">Newsletter</Link>
         <Link to="/community" className="hover:underline font-semibold">Community</Link>
+      </div>
 
-        {/* Login / Logout Section */}
-        <div className=" flex items-center gap-2 ">
-          {!user ? (
-            <Link to="/login" className="cursor-pointer hover:underline font-semibold ml-[600px] sm:ml-8 md:ml-[600px] ">
-              Login
-            </Link>
-          ) : (
-
-            <div className="flex gap-4 items-center ml-[600px] sm:ml-8 md:ml-[550px]  ">
-            
-              <Link to="/profile" className="cursor-pointer hover:underline font-semibold">
-                {/* Circle with First Letter of Name */}
+      <div className="flex items-center gap-6">
+        {!user ? (
+          <Link to="/login" className="cursor-pointer hover:underline font-semibold">
+            Login
+          </Link>
+        ) : (
+          <div className="flex gap-4 items-center">
+            <Link to="/profile" className="cursor-pointer hover:underline font-semibold">
               <div className="w-8 h-8 flex items-center justify-center bg-white text-[#00016A] font-bold rounded-full border">
                 {firstLetter}
               </div>
+            </Link>
+            <button onClick={handleLogout} className="cursor-pointer hover:underline font-semibold">
+              Logout
+            </button>
+          </div>
+        )}
 
-              </Link>
-              <button onClick={handleLogout} className="cursor-pointer hover:underline font-semibold">
-                Logout
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Navigate to Chat Page */}
-        <div className="ml-auto -mr-8 cursor-pointer">
+        {/* Chat Icon */}
+        <div className="cursor-pointer">
           <LuMessageSquareText onClick={() => navigate("/chat")} />
         </div>
       </div>
 
       {isSidebarOpen && <Sidebar />}
+    </div>
     </nav>
   );
 };
