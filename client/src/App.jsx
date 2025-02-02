@@ -22,7 +22,9 @@ import ChatPage from "./pages/ChatPage";
 import HelpPage from "./components/Help";
 import ReportPage from "./components/Report";
 
+
 import ProfilePerson from "./pages/ProfilePerson";
+import { ToastContainer, toast } from 'react-toastify';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -52,6 +54,7 @@ function App() {
             </PrivateRoute>
           }
         />
+
         <Route path="/events" element={<Event />} />
         <Route path="/newsletter" element={<NewsletterPage />} />
         <Route path="/updates" element={<UpdatesPage />} />
@@ -61,10 +64,30 @@ function App() {
         <Route path="/report" element={<ReportPage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/profile/:userId" element={<ProfilePerson />} />
+
+
+        <Route path="/events" element={<Event/>}></Route>
+        <Route path="/newsletter" element={<NewsletterPage />}></Route>
+        <Route path="/updates" element={<UpdatesPage/>}></Route>
+        <Route path="/memories" element={<MemoriesPage/>}></Route>
+        <Route path="/community" element={<Community/>}></Route>
+
+        <Route path="/chat" element={<ChatPage />}></Route>
+
+
+       
+        <Route path="/profile/:userId" element={<ProfilePerson/>}/>
+        {/* <Route path="/memories" element={<MemoriesPage />}></Route> */}
+
+        
+        <Route path="/memories" element={<MemoriesPage />}></Route>
+
+
       </Routes>
       
       <ScrollToTop />
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

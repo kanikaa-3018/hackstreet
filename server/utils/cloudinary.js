@@ -10,16 +10,17 @@ cloudinary.config({
 // Upload function
 export const uploadToCloudinary = (filePath) => {
   return new Promise((resolve, reject) => {
-    cloudinary.v2.uploader.upload(filePath, (error, result) => {
+    cloudinary.uploader.upload(filePath, (error, result) => {
       if (error) return reject(error);
       resolve(result.secure_url); 
     });
   });
 };
 
+// Delete function
 export const deleteFromCloudinary = (publicId) => {
   return new Promise((resolve, reject) => {
-    cloudinary.v2.uploader.destroy(publicId, (error, result) => {
+    cloudinary.uploader.destroy(publicId, (error, result) => {
       if (error) return reject(error);
       resolve(result);
     });
