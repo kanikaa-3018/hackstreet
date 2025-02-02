@@ -309,3 +309,37 @@ export const getConnectedAlumni = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+
+
+// In your alumni controller
+export const getAlumniById = async (req, res) => {
+  try {
+    const userId = req.params.id; // Correct way to access userId
+    console.log("Received request for userId:", userId); // Debug log
+
+    const alumni = await alumniModel.findById(userId);
+    console.log("Found alumni:", alumni); // Debug log
+
+    if (!alumni) {
+      return res.status(404).json({
+        success: false,
+        message: 'Alumni not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      alumni
+    });
+  } catch (error) {
+    console.error("Controller error:", error); // Debug log
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message
+    });
+  }
+};
+
+

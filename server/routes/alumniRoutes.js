@@ -1,6 +1,7 @@
 import express from "express";
 import auth from "../middlewares/auth.js";
 import upload from "../utils/upload.js";
+
 import {
   loginController,
   signupController,
@@ -9,7 +10,8 @@ import {
   connectAlumni, 
   getConnectedAlumni,
   getAllAlumnis,
-  disconnectAlumni
+  disconnectAlumni,
+  getAlumniById
 } from "../controllers/alumniController.js";
 const router = express.Router();
 
@@ -23,5 +25,16 @@ router.put("/update", auth, upload.single("profileImage"), editAlumniProfile);
 router.post("/connect", auth, connectAlumni); // Connect with another alumni
 router.post("/diconnect", auth, disconnectAlumni); // Connect with another alumni
 router.get("/connections", auth, getConnectedAlumni); // Get connected alumni
+
+
+
+
+
+
+
+
+// In your backend routes file
+router.get('/:userId', auth, getAlumniById);
+
 
 export default router;
