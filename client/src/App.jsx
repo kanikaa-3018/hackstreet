@@ -21,6 +21,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Chatbot from "./components/Chatbot";
 import ChatPage from "./pages/ChatPage";
+import ProfilePerson from "./pages/profile_person";
 
 function App() {
   return (
@@ -51,7 +52,8 @@ function App() {
 
         <Route path="/chat" element={<ChatPage />}></Route>
 
-        <Route path="/profile" element={<Profile />} />
+       
+        <Route path="/profile/:id" element={<ProfilePerson/>}/>
         {/* <Route path="/memories" element={<MemoriesPage />}></Route> */}
       </Routes>
 

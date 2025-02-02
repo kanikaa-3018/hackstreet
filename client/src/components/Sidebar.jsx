@@ -67,6 +67,17 @@ const Sidebar = () => {
     setSearchTerm(value);
     setShowDropdown(value.length > 0); // Show dropdown if input is not empty
   };
+
+  //handle profile click
+// In your search/dashboard component where you have the search results
+const handleUserClick = (userId) => {
+  console.log("Clicked user ID:", userId); // Verify userId exists
+  if (!userId) {
+    console.error("No userId provided");
+    return;
+  }
+  navigate(`/profile/${userId}`);
+};
   
 
   return (
