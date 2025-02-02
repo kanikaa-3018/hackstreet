@@ -1,7 +1,7 @@
 <div align="center">
   <h2>🔥 Join the Revolution!<a href="#">Alumni Nexus</a> is redefining alumni networking with AI-powered connections, real-time chats, and exclusive career opportunities. Stay connected, grow together, and make an impact! 🚀💙</h2>
   <p>Complete <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6yMaaqnb6p_UiXxl3xYagIEXk7UvaYmxKp79retvQWAEGQQ/viewform?usp=sharing">this form</a> to provide feedback or sign up for progress updates.<br/><br/>
-  Updates will also be posted on the <a href="#">Alumni Nexus Github Page</a>.</p>
+  Updates will also be posted on the <a href="https://github.com/kanikaa-3018/hackstreet">Alumni Nexus Github Page</a>.</p>
 </div>
 
 ---
@@ -47,7 +47,9 @@ Alumni Nexus is a *secure and intelligent alumni engagement platform* with featu
 
 <div align="center">
   <img src="https://media-hosting.imagekit.io//c39e1e43c6a84548/WhatsApp%20Image%202025-02-01%20at%2016.02.44_02a4e233.jpg?Expires=1833014004&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BVtdal2UFemutcksObvqoT63-HObb39uNlnc14v4IlaIlgkknGr8mOlMai0Zea8fOZb6rugmeERsgUKyabAMeUOYD-3xOsLn-1qowiZxh61Yy0XaT9FjinfTKhe3PwaFka3aCM8AYM2aVNWj7S~ZmqwJ34zofALRdzxFi7nHgFmj5VF5TxUUFHMWKxlwJv9XNtrcfsPmKQ9-8lsmdFpTIbbySSPANQRKCxc-LXagNvKgWz0MybO~NbHX4yixekZo22NhwMzZXWhlZZNwlrPsqpGLm6o-BvsGEQkVh8o0du3w4nVpOdIY3ixJAZX1F5GB061B3RQ2QSzMgugw-FdsjA__" alt="Homepage Screenshot">
-  <img src="" alt="Chat Screenshot">
+  <img src="https://media-hosting.imagekit.io//9a0a61a1d4754d77/WhatsApp%20Image%202025-02-01%20at%2016.03.00_065c5c53.jpg?Expires=1833077409&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=kCiyfjvEey4zVXqUuQDiI9s10wQ8LJhgsSgLiiqhz~VwuStM4PQM2qBdCviD5WXhTx8G-9N7wxHgFkF-Z34qtuaJ7EimYqWN~RgPkhJk6D-ksv9q14kxJKklG7JEPBn8Kfs7VzlK2E5l~xzeGZrYWzEuETENKm4cUiJoIKnMz~YZc2fEopoZkCUhQQu-CZ0r0ipS4su4ssHf2WnkfORI72J3AuZ-GZ89-U2VcPoARhF29Rbj1DSJjvQdk-~TdgKRwZWJ9sii~XwLV6~3nOBebMVAzn7qPJjopLFN-71xQ2gK-xc858xPlr-lqhZbu9uw7sZOq79yoQWjZJoizvQBxQ__" alt="Upcoming events">
+  <img src="https://media-hosting.imagekit.io//f2ebe819edc84c1e/WhatsApp%20Image%202025-02-01%20at%2016.03.15_03cc3c82.jpg?Expires=1833077481&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=d3Uf1H8ugE9LgGw9DBk4nmKxQAyfzbcBmtbJcMQ8VlMGf-1TGMSHhO1lJRP3eDGHtZrLLQB8smZ6JNKGCtwbDk8CGWRZQyzqT2aT3otILoDmHzsG9yrQM38OCJyhKTS~j3nN3ZcRh6Y0JVv17Pkz3U6wyRddpMrpcBccb3OgBwLrBQUr3liCQaxocqzrcWh01zdB3n9myMpqTjvAxuou7t86XzhP1JWR48eIgSrVx2G05EIwWMCcNcqz-gpXkBEIH~yN9ZIh3RcHEvrbDqXxnisy758Jp0KQSMjsWLqlSD0W3K9EPz8mYyhtQJwCg8oxtc34eatls7QIklhN-Y3V0w__" alt="Latest Updates">
+  <img src="https://media-hosting.imagekit.io//f2ebe819edc84c1e/WhatsApp%20Image%202025-02-01%20at%2016.03.15_03cc3c82.jpg?Expires=1833077481&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=d3Uf1H8ugE9LgGw9DBk4nmKxQAyfzbcBmtbJcMQ8VlMGf-1TGMSHhO1lJRP3eDGHtZrLLQB8smZ6JNKGCtwbDk8CGWRZQyzqT2aT3otILoDmHzsG9yrQM38OCJyhKTS~j3nN3ZcRh6Y0JVv17Pkz3U6wyRddpMrpcBccb3OgBwLrBQUr3liCQaxocqzrcWh01zdB3n9myMpqTjvAxuou7t86XzhP1JWR48eIgSrVx2G05EIwWMCcNcqz-gpXkBEIH~yN9ZIh3RcHEvrbDqXxnisy758Jp0KQSMjsWLqlSD0W3K9EPz8mYyhtQJwCg8oxtc34eatls7QIklhN-Y3V0w__" alt="Community">
 </div>
 
 ---
